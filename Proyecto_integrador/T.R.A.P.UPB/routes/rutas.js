@@ -113,8 +113,8 @@ router.post('/registro_clientes', async (req, res) => {
 
 router.get('/ver_trabajadores',async (req, res) => {
     const data = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS');
-    res.sendFile(path.join(__dirname,'../home/ver_trabajadores.html'),{data});
-    return data;
+    //res.sendFile(path.join(__dirname,'../home/ver_trabajadores.html'),{data});
+    res.send(data);
 })
 
 module.exports = router
