@@ -1,204 +1,198 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Sistema Web</title>
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-        crossorigin="anonymous"></script>
-</head>
-<body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="/principal.html">Sistema Web</a><button
-            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
-                class="fas fa-bars"></i></button>
-        <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <form action="/login" method="get">
-                        <button>Salir</button>
-                    </form>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sistema Web</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://kit.fontawesome.com/2c36e9b7b1.js"crossorigin="anonymous"></script>
+      
+        
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="/principal.html">Sistema Web</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+            ><!-- Navbar Search-->
+            <!--<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
                 </div>
-            </li>
-        </ul>
-    </nav>
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                                Registro Trabajadores
+            </form>-->
+            <!-- Navbar-->
+            <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Configuración</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.html">Salir</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <a class="nav-link" href="principal.html"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard</a
+                            >
                         </div>
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                            <form action="/ver_trabajadores" method="get">
-                                <button>Ver Trabajadores</button>
-                            </form>
-                        </div>
-            </nav>
-        </div>
-    </div>
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid">
-
-                <form action="/registro_trabajadores" method="POST" class="formulario" id="formulario">
-
-                    <h4>Formulario registro</h4>
-                    <!--Grupo Cédula-->
-                    <div class="formulario__grupo " id="grupo__cedula">
-                        <label for="usuario" class="formulario__label">Cédula</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="number" name="cedula" placeholder="cédula">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Cédula no válida</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>
-
-                    <!--Grupo primer nombre-->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <label for="nombre1" class="formulario__label">Nombre</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="text" name="nombre" placeholder="Nombre">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Nombre no valido, solo puede contener letras</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo apellido-->
-                    <div class="formulario__grupo" id="grupo__apellido">
-                        <label for="nombre2" class="formulario__label">Apellido</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="text" name="apellido" placeholder="apellido">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Nombre no valido, solo puede contener letras</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo correo-->
-                    <div class="formulario__grupo" id="grupo__correo">
-                        <label for="correo" class="formulario__label">Correo electrónico</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="email" name="correo" placeholder="correo@correo.com">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Correo no valido</p>
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo telefono-->
-                    <div class="formulario__grupo" id="grupo__telefono">
-                        <label for="telefono" class="formulario__label">Teléfono</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="number" name="telefono" placeholder="4551566800">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">El teléfono solo puede contener números y el máximo son 10
-                            dígitos</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-
-
-                    <!--Grupo direccion -->
-                    <div class="formulario__grupo" id="grupo__direccion">
-                        <label for="nombre2" class="formulario__label">Dirección</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="text" name="direccion" placeholder="direccion">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Direccion no valida</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo contraseña 1-->
-                    <div class="formulario__grupo" id="grupo__password">
-                        <label for="password" class="formulario__label">Contraseña</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="password" name="password">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">La contraseña debe ser de 4 a 12 dígitos</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo contraseña 2-->
-                    <div class="formulario__grupo" id="grupo__password2">
-                        <label for="password2" class="formulario__label">Verificar contraseña</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="password" name="password2" id="password2">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Las contraseñas no coinciden</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                        <select class="form-select" aria-label="Tipo" name="tipo">
-                            <option selected>Tipo de persona</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Secretario</option>
-                            <option value="3">Recepcionista</option>
-                            <option value="4">Mecanico</option>
-                            <option value="5">Cajero</option>
-                        </select>
-
-                        <select class="form-select" aria-label="Estado" name="estado">
-                            <option selected>Estado</option>
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
-                        </select>
-                    </div>
-
-                    <div>
-
-                    </div>
-                    <div class="formulario__mensaje" id="formulario__mensaje">
-                        <p><i class="fas fa-exclamation-triangle"></i><b>Error:</b>Por favor rellenar el formulario
-                            correctamente</p>
-                    </div>
-
-                    <div class="formulario__grupo formulario__grupo-btn-enviar">
-                        <button type="click" class="fomulario__btn">Registrar</button>
-                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
-                            exitosamente</p>
-
-                    </div>
-
-
-
-                </form>
-                <script type="text/javascript" src="js/rut.js"></script>
+                </nav>
             </div>
-        </main>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        
+                        <form action="/registro_trabajadores" method="POST" class="formulario" id="formulario">
+       
+                            <h4>Formulario registro</h4>
+                      
+         <!--Grupo cedula-->
+         <div class="formulario__grupo " id="grupo__cedula">
+            <label for="cedula" class="formulario__label">Cédula</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="text" name="cedula" id="cedula" placeholder="Thor123">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">La cédula tiene que ser de 4 a 16 digitos</p>
 
-    </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
-</body>
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
 
+        <!--Grupo primer nombre-->
+        <div class="formulario__grupo" id="grupo__nombre">
+            <label for="nombre" class="formulario__label">Nombre</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="text" name="nombre" id="nombre" placeholder="Nombre">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">Nombre no valido, solo puede contener letras</p>
+
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
+
+        <!--Grupo apellido-->
+        <div class="formulario__grupo" id="grupo__apellido">
+            <label for="apellido" class="formulario__label">Apellido</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="text" name="apellido" id="apellido" placeholder="Apellido">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">Apellido no valido, solo puede contener letras</p>
+
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
+
+        <!--Grupo direccion-->
+        <div class="formulario__grupo" id="grupo__direccion">
+            <label for="direccion" class="formulario__label">Direccion</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="text" name="direccion" id="direccion" placeholder="Doe">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">Direccion no valida</p>
+
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
+
+
+        <!--Grupo correo-->
+        <div class="formulario__grupo" id="grupo__correo">
+            <label for="correo" class="formulario__label">Correo electrónico</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="email" name="correo" id="correo" placeholder="thor@correo.com">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">Correo no valido</p>
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
+
+         <!--Grupo telefono-->
+         <div class="formulario__grupo" id="grupo__telefono">
+            <label for="telefono" class="formulario__label">Teléfono</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="text" name="telefono" id="telefono" placeholder="4551566800" >
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">El teléfono solo puede contener números y el máximo son 10 dígitos</p>
+
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
+
+        <!--Grupo contraseña 1-->
+        <div class="formulario__grupo" id="grupo__password">
+            <label for="password" class="formulario__label">Contraseña</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="password" name="password" id="password" >
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">La contraseña debe ser de 4 a 12 dígitos</p>
+
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
+
+        <!--Grupo contraseña 2-->
+        <div class="formulario__grupo" id="grupo__password2">
+            <label for="password2" class="formulario__label">Verificar contraseña</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="password" name="password2" id="password2" >
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">Las contraseñas no coinciden</p>
+
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
+
+       
+
+        <!--Grupo: terminos y condiciones-->
+
+        <div class="formulario__grupo" id="grupo__terminos">
+            <label class="formulario__label">
+                <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
+                Acepto los terminos y condiciones
+            </label> 
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p> 
+        </div>
+        <!----------------------------------------------------------------->
+
+        <div class="formulario__mensaje" id="formulario__mensaje">
+            <p><i class="fas fa-exclamation-triangle"></i><b>Error:</b>Por favor rellenar el formulario correctamente</p>
+        </div>
+
+        <div class="formulario__grupo formulario__grupo-btn-enviar">
+            <button type="click" class="fomulario__btn">Registrar</button>
+            <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente</p>
+            
+        </div>
+
+                      
+                        </form>
+                        <script type="text/javascript" src="rut.js"></script>
+                    </div>
+                </main>
+            
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/datatables-demo.js"></script>
+    </body>
 </html>
