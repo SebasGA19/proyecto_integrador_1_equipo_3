@@ -9,6 +9,7 @@ router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/login.html'));
 })
 
+// Login Trabajador
 router.post('/auth', async (req, res) => {
     const correo = req.body.emaillogin;
     const password = req.body.passwordlogin;
@@ -17,7 +18,7 @@ router.post('/auth', async (req, res) => {
         pool.query('SELECT * FROM PERSONAS WHERE CORREO =?', [correo], async (error, results) => {
             if (results.length == 0) {
                 res.send("No se encontro ningun usuario");
-            } else if (password != results[0].CONTRASEÑA) {
+            } else if (results[0].CONTRASEÑA != password) {
                 res.send("Contraseña incorrecta");
             } else {
                 console.log("Bienvenido", results[0].NOMBRE);
@@ -42,6 +43,7 @@ router.post('/auth', async (req, res) => {
     }
 })
 
+//Registro trabajadores
 router.post('/registro_trabajadores', async (req, res) => {
     const cedula = req.body.cedula;
     const nombre = req.body.nombre;
@@ -53,25 +55,52 @@ router.post('/registro_trabajadores', async (req, res) => {
     const tipo = req.body.tipo;
     const estado = req.body.estado;
     let passcr = await byscriptjs.hash(password, 8);
-
     if (cedula && nombre && apellido && correo && telefono && direccion && password) {
         pool.query('SELECT * FROM PERSONAS WHERE CORREO = ?', [correo], async (error, results) => {
             if (results.length == 0) {
-                pool.query('SELECT * FROM PERSONAS WHERE CEDULA = ?', [cedula], async (error, results) => {
-                    if (results.length == 0) {
-                        pool.query('INSERT INTO PERSONAS SET ?', { CEDULA: cedula, NOMBRE: nombre, APELLIDO: apellido, CORREO: correo, TELEFONO: telefono, DIRECCION: direccion, ESTADO_PERSONA: estado, CONTRASEÑA: passcr, TIPO_PERSONAS_ID: tipo }, async(error, results => {
-                            if (error) {
-                                console.log(error);
-                            } else {
-                                console.log("Alto exito");
-                            }
-                        }))
-                    }else{
-                        res.send("La cedula se encuentra en la base de datos");
+                pool.query('INSERT INTO PERSONAS SET ?', { CEDULA: cedula, NOMBRE: nombre, APELLIDO: apellido, CORREO: correo, TELEFONO: telefono, DIRECCION: direccion, ESTADO_PERSONA: estado, CONTRASEÑA: passcr, TIPO_PERSONAS_ID: tipo }, async(error, results) => {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        res.send("Alto exito");
                     }
                 })
+            } else if(results[0].CEDULA == cedula){
+                res.send("La cedula se encuentra duplicada");
+            }else if(results[0].TELEFONO == telefono){
+                res.send("El telefono se encuentra duplicado");
+            }else{
+                res.send("El correo se encuentra en la base de datos");
+            }
+        })
+    }
+})
 
-            } else {
+// Registro clientes
+router.post('/registro_clientes', async (req, res) => {
+    const cedula = req.body.cedula;
+    const nombre = req.body.nombre;
+    const apellido = req.body.apellido;
+    const correo = req.body.correo;
+    const telefono = req.body.telefono;
+    const direccion = req.body.direccion;
+    const tipo = 6;
+    const estado = 1;
+    if (cedula && nombre && apellido && correo && telefono && direccion) {
+        pool.query('SELECT * FROM PERSONAS WHERE CORREO = ?', [correo], async (error, results) => {
+            if (results.length == 0) {
+                pool.query('INSERT INTO PERSONAS SET ?', { CEDULA: cedula, NOMBRE: nombre, APELLIDO: apellido, CORREO: correo, TELEFONO: telefono, DIRECCION: direccion, ESTADO_PERSONA: estado, CONTRASEÑA: null, TIPO_PERSONAS_ID: tipo }, async(error, results) => {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        res.send("Alto exito");
+                    }
+                })
+            } else if(results[0].CEDULA == cedula){
+                res.send("La cedula se encuentra duplicada");
+            }else if(results[0].TELEFONO == telefono){
+                res.send("El telefono se encuentra duplicado");
+            }else{
                 res.send("El correo se encuentra en la base de datos");
             }
         })
