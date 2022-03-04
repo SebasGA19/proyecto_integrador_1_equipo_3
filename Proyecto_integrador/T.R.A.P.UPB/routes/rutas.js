@@ -4,14 +4,11 @@ const path = require('path');
 const pool = require('../db/database');
 const byscriptjs = require('bcryptjs');
 var async = require('async');
+const { dirname } = require('path');
 
 // Redirección de rutas 
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/login.html'));
-})
-
-router.get('/ver_trabajadores', (req, res) => {
-    res.sendFile(path.join(__dirname, '../home/ver_trabajadores.html'));
 })
 
 // Login Trabajador
@@ -112,32 +109,12 @@ router.post('/registro_clientes', async (req, res) => {
     }
 })
 
-button5.addEventListener('click', () => {
+// Mostrar Trabajadores
 
-    var tableBody="";
-    tableBody=document.getElementById('tablebody');
-
-    var queryString = 'SELECT * FROM PERSONAS';
-
-    connection.query(queryString, function(err, results) {
-      if (err) throw err;
-
-        for (i = 0; i < results.length; i++) {
-        tableBody += '<tr>';
-        tableBody += '  <td>' + results[i].idCliente + '</td>';
-        tableBody += '  <td>' + results[i].nombreCliente + '</td>';
-        tableBody += '  <td>' + results[i].apellidoCliente + '</td>';
-        tableBody += '  <td>' + results[i].cedulaCliente + '</td>';
-        tableBody += '  <td>' + results[i].telefonoCliente + '</td>';
-        tableBody += '  <td>' + results[i].celularCliente + '</td>';
-        tableBody += '  <td>' + results[i].direccionCliente + '</td>';
-        tableBody += '  <td>' + results[i].emailCliente + '</td>';
-        tableBody += '</tr>';
-        }
-    });
-
-    connection.end(() => {
-    });
-});
+router.get('/ver_trabajadores',async (req, res) => {
+    const data = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS');
+    res.sendFile(path.join(__dirname,'../home/ver_trabajadores.html'),{data});
+    return data;
+})
 
 module.exports = router
