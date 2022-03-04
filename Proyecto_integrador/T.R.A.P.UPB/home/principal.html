@@ -53,17 +53,17 @@
                 <form action="/registro_trabajadores" method="POST" class="formulario" id="formulario">
 
                     <h4>Formulario registro</h4>
-                    <!--Grupo Cédula-->
-                    <div class="formulario__grupo " id="grupo__cedula">
-                        <label for="usuario" class="formulario__label">Cédula</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="number" name="cedula" placeholder="cédula">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Cédula no válida</p>
+                       <!--Grupo Cédula-->
+         <div class="formulario__grupo " id="grupo__cedula">
+            <label for="cedula" class="formulario__label">Cédula</label>
+            <div class="formulario__grupo-input">
+                <input class="formulario__input" type="text" name="cedula" id="cedula" placeholder="Cédula">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">La cédula tiene que ser de 4 a 16 digitos</p>
 
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
+            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+        </div>
 
                     <!--Grupo primer nombre-->
                     <div class="formulario__grupo" id="grupo__nombre">
