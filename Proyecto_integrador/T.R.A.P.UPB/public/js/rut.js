@@ -2,28 +2,29 @@ const formulario=document.getElementById('formulario');
 const inputs=document.querySelectorAll('#formulario input');//arreglo de todos los inputs, el numeral es porque es un ID
 
 const expresiones = {//objeto 1223
-	cedula: /^\d{7,14}$/, // Letras, numeros, guion y guion_bajo
+	cedula: /^{4,16}$/, // numeros
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    direccion: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    telefono: /^\d{7,14}$/ ,// 7 a 14 numeros.
+    direccion: /^[a-zA-Z0-9\_\-]{4,40}$/, // Letras, numeros, guion y guion_bajo
 	password: /^.{4,12}$/, // 4 a 12 digitos.
-    password2: /^.{4,12}$/, // 4 a 12 digitos.
-	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	telefono: /^\d{7,14}$/ // 7 a 14 numeros.
-}
-let nombres=['cedula','nombre','apellido','direccion','password','password2','correo','telefono']
+    password2: /^.{4,12}$/ // 4 a 12 digitos.
 
-let grup=['grupo__cedula','grupo__nombre','grupo__apellido','grupo__direccion','grupo__password','grupo__password2','grupo__correo','grupo__telefono']
+}
+let nombres=['cedula','nombre','apellido','correo','telefono','direccion','password','password2']
+
+let grup=['grupo__cedula','grupo__nombre','grupo__apellido','grupo__correo','grupo__telefono','grupo__direccion','grupo__password','grupo__password2']
 
 
 const campos={//objeto en donde todas sus variables se encuentran el false
     cedula: false,
     nombre:false,
     apellido:false,
-    direccion:false,
-    password:false,
     correo:false,
-    telefono:false
+    telefono:false,
+    direccion:false
+    
 }
 const validarFormulario=(e)=>{//funcion de tipo flecha que es evaluada con keyup
     switch(e.target.name) {//Evalua el name del input
@@ -39,11 +40,18 @@ const validarFormulario=(e)=>{//funcion de tipo flecha que es evaluada con keyup
             validarInformacion(expresiones.apellido.test(e.target.value),'grupo__apellido','apellido') 
         break;
 
-        case "direccion":
-            validarInformacion(expresiones.direccion.test(e.target.value),'grupo__direccion','direccion') 
+        case "correo":
+            validarInformacion(expresiones.correo.test(e.target.value),'grupo__correo','correo') 
         break;
 
 
+        case "telefono":
+            validarInformacion(expresiones.telefono.test(e.target.value),'grupo__telefono','telefono')
+        break;
+
+        case "direccion":
+            validarInformacion(expresiones.direccion.test(e.target.value),'grupo__direccion','direccion')
+        break;
 
         case "password":
             validarInformacion(expresiones.password.test(e.target.value),'grupo__password','password')
@@ -66,15 +74,7 @@ const validarFormulario=(e)=>{//funcion de tipo flecha que es evaluada con keyup
 
         break;
 
-        case "correo":
-            validarInformacion(expresiones.correo.test(e.target.value), 'grupo__correo','correo')
-            
-        break;
-
-        case "telefono":
-
-            validarInformacion(expresiones.telefono.test(e.target.value), 'grupo__telefono','telefono')
-        break;
+       
     }
 }
 
@@ -89,7 +89,7 @@ var btn=document.querySelector('.fomulario__btn')
 
     const terminos=document.getElementById('terminos');
 
-    if(campos.cedula && campos.nombre && campos.apellido && campos.direccion && campos.password && campos.correo && campos.telefono && terminos.checked)
+    if(campos.cedula && campos.nombre && campos.nombre2 && campos.apellido && campos.apellido2 && campos.password && campos.correo && campos.telefono && terminos.checked)
     {
         formulario.reset();// se reinician todos los campos del formulario
         document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo')
@@ -199,3 +199,7 @@ function validarInfo2(grupoAValidar,variable)  {
         document.querySelector('#'+grupoAValidar+ ' .formulario__input-error').classList.remove('formulario__input-error-activo');
         campos[variable]=false;
 }
+
+
+
+

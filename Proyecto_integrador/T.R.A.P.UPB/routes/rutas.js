@@ -4,11 +4,14 @@ const path = require('path');
 const pool = require('../db/database');
 const byscriptjs = require('bcryptjs');
 var async = require('async');
-const { dirname } = require('path');
 
 // Redirección de rutas 
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/login.html'));
+})
+
+router.get('/ver_trabajadores', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/ver_trabajadores.html'));
 })
 
 // Login Trabajador
@@ -109,7 +112,7 @@ router.post('/registro_clientes', async (req, res) => {
     }
 })
 
-// Mostrar Trabajadores
+button5.addEventListener('click', () => {
 
 router.get('/ver_trabajadores',async (req, res) => {
     const data = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS');
