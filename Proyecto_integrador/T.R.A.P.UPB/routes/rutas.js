@@ -6,6 +6,10 @@ const byscriptjs = require('bcryptjs');
 var async = require('async');
 
 // Redirección de rutas 
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../estatica/index.html'));
+})
+
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/login.html'));
 })
@@ -112,7 +116,6 @@ router.post('/registro_clientes', async (req, res) => {
     }
 })
 
-button5.addEventListener('click', () => {
 
 router.get('/ver_trabajadores',async (req, res) => {
     const data = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS');

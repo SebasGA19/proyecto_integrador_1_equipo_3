@@ -40,52 +40,6 @@
 <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.min.js"></script>        
-<script>
-     $(document).ready(function() {   
-         var url = '/ver_trabajadores';
-
-          $('#personas').DataTable({            
-              "ajax":{
-                  "url": url,
-                  "dataSrc":"",
-                  "method": "GET"
-              },
-              "columns":[
-                  {"data":"CEDULA"},
-                  {"data":"NOMBRE"},
-                  {"data":"APELLIDO"},
-                  {"data":"CORREO"},
-                  {"data":"TELEFONO"},
-                  {"data":"DIRECCION"},
-                  {"data":"ESTADO_PERSONA"},
-                  {"data":"TIPO_PERSONAS_ID"}
-              ]
-          });
-    });
-
-
-                    <a class="dropdown-item" href="login.html">Salir</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <a class="nav-link" href="principal.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                            </div>
-                            Dashboard
-                        </a>
-            </nav>
-        </div>
-
-        <button name="button5" id="button5">Ver Trabajadores</button>
-        
-    </div>
-    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
