@@ -14,3 +14,11 @@ INSERT INTO TIPO_PERSONAS VALUES(6,'Cliente');
 INSERT INTO TIPO_SERVICIO VALUES(1,'Lavado',20000);
 INSERT INTO TIPO_SERVICIO VALUES(2,'Mecanica_General',50000);
 INSERT INTO TIPO_SERVICIO VALUES(3,'Limado',80000);
+
+-- Personas base
+
+INSERT INTO PERSONAS VALUES(1,'Admin','Principal','admin@trap.com',312341,'Bucaramanga',1,'holasoyadmin',1);
+INSERT INTO PERSONAS VALUES(2,'Secretario','Principal','secretario@trap.com',312342,'Bucaramanga',1,'holasoysecretario',2);
+INSERT INTO PERSONAS VALUES(3,'Recepcionista','Principal','recepcionista@trap.com',312343,'Bucaramanga',1,'holasoyrecepcionista',3);
+INSERT INTO PERSONAS VALUES(4,'Mecanico','Principal','mecanico@trap.com',312344,'Bucaramanga',1,'holasoymecanico',4);
+INSERT INTO PERSONAS VALUES(5,'Cajero','Principal','cajero@trap.com',312354,'Bucaramanga',1,'holasoycajero',5);
