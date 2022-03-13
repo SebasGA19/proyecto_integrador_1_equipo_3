@@ -43,7 +43,7 @@ router.post('/auth', async (req, res) => {
                 } else if (results[0].TIPO_PERSONAS_ID == 4) {
                     res.sendFile(path.join(__dirname, '../home/mecanico.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 5) {
-                    res.sendFile(path.join(__dirname, '../home/caja.html'));
+                    res.sendFile(path.join(__dirname, '../home/cajero.html'));
                 } else {
                     res.send("No esta asignado , vuelva pronto", results[0].NOMBRE);
                 }
