@@ -15,16 +15,7 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php">Secretario TRAP</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
-                class="fas fa-bars"></i></button><!-- Navbar Search-->
-        <!--<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-				<div class="input-group-append">
-				<button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-				</div>
-                </div>
-			</form>-->
-        <!-- Navbar-->
+                class="fas fa-bars"></i></button>
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
@@ -45,7 +36,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                                Registro Trabajadores
+                            Registro Trabajadores
                         </div>
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
                             <form action="/ver_clientes" method="get">
@@ -56,101 +47,45 @@
         </div>
         <div class="container-fluid">
             <form action="/modificar_clientes" method="POST" class="formulario" id="formulario">
-                <h4>Modificar Clientes</h4>
-                <!--Grupo Cédula-->
-                <div class="formulario__grupo " id="grupo__cedula">
-                    <label for="usuario" class="formulario__label">Cédula</label>
-                    <div class="formulario__grupo-input">
-                        <input class="formulario__input" type="number" name="cedula" placeholder="cédula">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <p class="formulario__input-error">Cédula no válida</p>
-
-                    <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                </div>
-
-                <!--Grupo primer nombre-->
-                <div class="formulario__grupo" id="grupo__nombre">
-                    <label for="nombre1" class="formulario__label">Nombre</label>
-                    <div class="formulario__grupo-input">
-                        <input class="formulario__input" type="text" name="nombre" placeholder="Nombre">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <p class="formulario__input-error">Nombre no valido, solo puede contener letras</p>
-
-                    <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                </div>
-
-                <!--Grupo apellido-->
-                <div class="formulario__grupo" id="grupo__apellido">
-                    <label for="nombre2" class="formulario__label">Apellido</label>
-                    <div class="formulario__grupo-input">
-                        <input class="formulario__input" type="text" name="apellido" placeholder="apellido">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <p class="formulario__input-error">Nombre no valido, solo puede contener letras</p>
-
-                    <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                </div>
-
-                <!--Grupo correo-->
-                <div class="formulario__grupo" id="grupo__correo">
-                    <label for="correo" class="formulario__label">Correo electrónico</label>
-                    <div class="formulario__grupo-input">
-                        <input class="formulario__input" type="email" name="correo" placeholder="correo@correo.com">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <p class="formulario__input-error">Correo no valido</p>
-                    <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                </div>
-
-                <!--Grupo telefono-->
-                <div class="formulario__grupo" id="grupo__telefono">
-                    <label for="telefono" class="formulario__label">Teléfono</label>
-                    <div class="formulario__grupo-input">
-                        <input class="formulario__input" type="number" name="telefono" placeholder="4551566800">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <p class="formulario__input-error">El teléfono solo puede contener números y el máximo son 10
-                        dígitos</p>
-
-                    <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                </div>
-
-
-
-                <!--Grupo direccion -->
-                <div class="formulario__grupo" id="grupo__direccion">
-                    <label for="nombre2" class="formulario__label">Dirección</label>
-                    <div class="formulario__grupo-input">
-                        <input class="formulario__input" type="text" name="direccion" placeholder="direccion">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <p class="formulario__input-error">Direccion no valida</p>
-
-                    <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                </div>
-
-                <!--Grupo contraseña 2-->
-                <div class="formulario__grupo" id="grupo__password2">
-                    <select class="form-select" aria-label="Estado" name="estado">
-                        <option selected>Estado</option>
-                        <option value="1">Activo</option>
-                        <option value="0">Inactivo</option>
+                <div class="container-fluid"><h3>Modificar Clientes</h3><br><div class="formulario__grupo" id="grupo__password2">
+                    <select class="form-select" aria-label="Estado" name="tipo">
+                        <option selected>Datos a modificar</option>
+                        <option value="1">Nombre</option>
+                        <option value="2">Apellido</option>
+                        <option value="3">Correo</option>
+                        <option value="4">Dirección</option>
                     </select>
-                </div>
-                <div class="formulario__mensaje" id="formulario__mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i><b>Error:</b>Por favor rellenar el formulario
-                        correctamente</p>
-                </div>
-                <div class="formulario__grupo formulario__grupo-btn-enviar">
-                    <button type="click" class="fomulario__btn">Registrar</button>
-                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente
-                    </p>
+                </div></div>
+                <!--Cédula-->
+                <div class="formulario__grupo " id="grupo__cedula">
 
-                </div>
+                        <label for="usuario" class="formulario__label">Cédula</label>
+                        <div class="formulario__grupo-input">
+
+                            <input class="formulario__input" type="number" name="cedula" placeholder="cédula">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        <label for="usuario" class="formulario__label">Dato a cambiar</label>
+                            <input class="formulario__input" type="text" name="cambio" placeholder="dato">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+
+                        </div>
+
+                        <div class="formulario__grupo" id="grupo__password2">
+                            <select class="form-select" aria-label="Estado" name="estado">
+                                <option selected>Estado Cliente</option>
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                            </select>
+                        </div>
+
+                        <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <button type="click" class="fomulario__btn">Registrar</button>
+                            <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
+                                exitosamente
+                            </p>
+                        </div>
+
             </form>
-            
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
@@ -164,4 +99,5 @@
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
 </body>
+
 </html>

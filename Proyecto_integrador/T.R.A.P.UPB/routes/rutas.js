@@ -150,22 +150,27 @@ router.get('/api_cliente',async (req, res) => {
 router.post('/modificar_clientes',async(req,res)=>{
     const cedula = req.body.cedula;
     pool.query('SELECT * FROM PERSONAS WHERE CEDULA = ?', [cedula] , async(error,results)=>{
-        if(results.length == 0 && results.TIPO_PERSONAS_ID == 6){
-            res.send("Cédula no registrada en la base de datos");
+        if(results.length == 0 || results[0].TIPO_PERSONAS_ID != 6){
+            res.send("Cédula no registrada en la base de datos o no tiene permiso para editar este cliente");
         }else{
-            const nombre = req.body.nombre;
-            const apellido = req.body.apellido;
-            const correo = req.body.correo;
-            const telefono = req.body.telefono;
-            const direccion = req.body.direccion;
-            const tipo = 6;
             const estado = req.body.estado;
-            if(results.TELEFONO == telefono){
-                res.send("Telefono duplicado");
-            }else if (results.CORREO == correo){
-                res.send("Correo duplicado");
+            const dato = req.body.cambio;
+            const sentencia = 'UPDATE PERSONAS SET NOMBRE =' +dato+'WHERE CEDULA ='+[results[0].CEDULA];
+            console.log(sentencia);
+            if(estado == 1){
+                pool.query('UPDATE PERSONAS SET NOMBRE =? ',[dato],'WHERE CEDULA =?', [results[0].CEDULA]);
+                console.log("Logrado");
+            }else if(estado  == 2){
+                pool.query('UPDATE PERSONAS SET APELLIDO =? ',[dato],'WHERE CEDULA =?', [results[0].CEDULA]);
+                console.log("Logrado");
+            }else if(estado == 3){
+                pool.query('UPDATE PERSONAS SET CORREO =? ',[dato],'WHERE CEDULA =?', [results[0].CEDULA]);
+                console.log("Logrado");
+            }else if(estado == 4){
+                pool.query('UPDATE PERSONAS SET DIRECCION =? ',[dato],'WHERE CEDULA =?', [results[0].CEDULA]);
+                console.log("Logrado");
             }else{
-                
+                res.send("Opcion no valida");
             }
         }
     });
