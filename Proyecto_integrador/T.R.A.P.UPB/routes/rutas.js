@@ -9,12 +9,19 @@ const { response } = require('express');
 // GENERAL
 
 // Redirección de rutas 
+
+//HOME
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../estatica/index.html'));
 })
 
+//Rutas generales
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/login.html'));
+})
+
+router.get('/modificar_clientes',async (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
 })
 
 router.get('/ver_clientes', (req, res) => {
@@ -129,12 +136,39 @@ router.post('/registro_clientes', async (req, res) => {
     }
 })
 
+// DESARROLLO
 //Consultar Clientes (API)
+
 router.get('/api_cliente',async (req, res) => {
     pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6').then((response)=>{
       res.json(response);
     })
-    res.sendFile(path.join(__dirname, '../home/secretario/consultar_clientes.html'));
+})
+
+//DESAROLLO
+// Modificar cliente 
+router.post('/modificar_clientes',async(req,res)=>{
+    const cedula = req.body.cedula;
+    pool.query('SELECT * FROM PERSONAS WHERE CEDULA = ?', [cedula] , async(error,results)=>{
+        if(results.length == 0 && results.TIPO_PERSONAS_ID == 6){
+            res.send("Cédula no registrada en la base de datos");
+        }else{
+            const nombre = req.body.nombre;
+            const apellido = req.body.apellido;
+            const correo = req.body.correo;
+            const telefono = req.body.telefono;
+            const direccion = req.body.direccion;
+            const tipo = 6;
+            const estado = req.body.estado;
+            if(results.TELEFONO == telefono){
+                res.send("Telefono duplicado");
+            }else if (results.CORREO == correo){
+                res.send("Correo duplicado");
+            }else{
+                
+            }
+        }
+    });
 })
 
 module.exports = router
