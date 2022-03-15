@@ -36,24 +36,25 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                            Registro Trabajadores
+                            Modificar Trabajadores
                         </div>
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
                             <form action="/ver_clientes" method="get">
-                                <button>Ver clientes</button>
+                                <button>Ver Trabajadores</button>
                             </form>
                         </div>
             </nav>
         </div>
         <div class="container-fluid">
-            <form action="/modificar_clientes" method="POST" class="formulario" id="formulario">
-                <div class="container-fluid"><h3>Modificar Clientes</h3><br><div class="formulario__grupo" id="grupo__password2">
+            <form action="/modificar_trabajadores" method="POST" class="formulario" id="formulario">
+                <div class="container-fluid"><h3>Modificar Trabajadores</h3><br><div class="formulario__grupo" id="grupo__password2">
                     <select class="form-select" aria-label="Estado" name="tipo">
                         <option selected>Datos a modificar</option>
                         <option value="1">Nombre</option>
                         <option value="2">Apellido</option>
                         <option value="3">Correo</option>
                         <option value="4">Dirección</option>
+                        <option value="5">Contraseña </option>
                     </select>
                 </div></div>
                 <!--Cédula-->
@@ -72,7 +73,7 @@
 
                         <div class="formulario__grupo" id="grupo__password2">
                             <select class="form-select" aria-label="Estado" name="estado">
-                                <option selected>Estado Cliente</option>
+                                <option selected>Estado Trabajadores</option>
                                 <option value="1">Activo</option>
                                 <option value="0">Inactivo</option>
                             </select>
