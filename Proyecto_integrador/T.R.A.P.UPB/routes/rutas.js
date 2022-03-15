@@ -153,22 +153,41 @@ router.post('/modificar_clientes',async(req,res)=>{
         if(results.length == 0 || results[0].TIPO_PERSONAS_ID != 6){
             res.send("Cédula no registrada en la base de datos o no tiene permiso para editar este cliente");
         }else{
-            const estado = req.body.estado;
+            const tipo = req.body.tipo;
             const dato = req.body.cambio;
-            const sentencia = 'UPDATE PERSONAS SET NOMBRE =' +dato+'WHERE CEDULA ='+[results[0].CEDULA];
-            console.log(sentencia);
-            if(estado == 1){
-                pool.query('UPDATE PERSONAS SET NOMBRE =? ',[dato],'WHERE CEDULA =?', [results[0].CEDULA]);
-                console.log("Logrado");
-            }else if(estado  == 2){
-                pool.query('UPDATE PERSONAS SET APELLIDO =? ',[dato],'WHERE CEDULA =?', [results[0].CEDULA]);
-                console.log("Logrado");
-            }else if(estado == 3){
-                pool.query('UPDATE PERSONAS SET CORREO =? ',[dato],'WHERE CEDULA =?', [results[0].CEDULA]);
-                console.log("Logrado");
-            }else if(estado == 4){
-                pool.query('UPDATE PERSONAS SET DIRECCION =? ',[dato],'WHERE CEDULA =?', [results[0].CEDULA]);
-                console.log("Logrado");
+            const estado = req.body.estado;
+            if(tipo == 1){
+                pool.query((`UPDATE PERSONAS SET NOMBRE = '${dato}' WHERE CEDULA = '${[results[0].CEDULA]}'`),async(err,result)=>{
+                    if(err){
+                    console.log(err);
+                }else{
+                    res.send("Logrado");
+                }
+            });
+            }else if(tipo  == 2){
+                pool.query((`UPDATE PERSONAS SET NOMBRE = '${dato}' WHERE CEDULA = '${[results[0].CEDULA]}'`),async(err,result)=>{
+                        if(err){
+                        console.log(err);
+                    }else{
+                        res.send("Logrado");
+                    }
+                });
+            }else if(tipo == 3){
+                pool.query((`UPDATE PERSONAS SET NOMBRE = '${dato}' WHERE CEDULA = '${[results[0].CEDULA]}'`),async(err,result)=>{
+                    if(err){
+                    console.log(err);
+                }else{
+                    res.send("Logrado");
+                }
+            });
+            }else if(tipo == 4){
+                pool.query((`UPDATE PERSONAS SET NOMBRE = '${dato}' WHERE CEDULA = '${[results[0].CEDULA]}'`),async(err,result)=>{
+                    if(err){
+                    console.log(err);
+                }else{
+                    res.send("Logrado");
+                }
+            });
             }else{
                 res.send("Opcion no valida");
             }
