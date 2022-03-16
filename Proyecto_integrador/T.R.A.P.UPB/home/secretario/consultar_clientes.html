@@ -29,7 +29,7 @@
                         <th>Tipo_Persona</th>
                     </thead>
                     <tbody>
-
+                        <button type="button" onclick="datos()">Probar prompt</button>
                     </tbody>
                 </table>
             </div>
@@ -39,11 +39,25 @@
 
 </html>
 <script>
+    const express = require('express');
+    const router = express.Router();
+    const path = require('path');
+    const pool = require('../db/database');
+
+    function datos(){
+        var data = pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6');
+        //console.log(data);
+        alert("xds");
+        //return data;
+    }
+
+    var data = pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6');
+    console.log(data);
     $(document).ready(function () {
-        $('#tabla-usuarios').DataTable({
-            "ajax": '/api_cliente',
+        $(`#tabla-usuarios`).DataTable({
+            "ajax": datos(),
             "columns": [
-                { "PERSONA": "CEDULA" },
+                { "data": "CEDULA" },
                 { "RowDataPacket": "NOMBRE" },
                 { "RowDataPacket": "APELLIDO" },
                 { "RowDataPacket": "CORREO" },

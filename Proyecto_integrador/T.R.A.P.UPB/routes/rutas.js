@@ -201,9 +201,13 @@ router.post('/registro_clientes', async (req, res) => {
 
 //Consultar Clientes (API)
 router.get('/api_cliente', async (req, res) => {
-    pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6').then((response) => {
-        console.log(response);
-        return res.json(response);
+    pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6', async(err,result) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.log(result);
+            return result;
+        }
     })
 })
 
