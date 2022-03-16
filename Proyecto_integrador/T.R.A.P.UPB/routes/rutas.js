@@ -167,13 +167,6 @@ router.post('/modificar_trabajadores', async (req, res) => {
     });
 })
 
-//Consultar
-router.get('/ver_trabajadores', async (req, res) => {
-    const data = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS');
-    res.send(data);
-})
-
-
 // SECRETARIO 
 // Registro clientes
 router.post('/registro_clientes', async (req, res) => {
@@ -206,12 +199,11 @@ router.post('/registro_clientes', async (req, res) => {
     }
 })
 
-// DESARROLLO
 //Consultar Clientes (API)
-
 router.get('/api_cliente', async (req, res) => {
     pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6').then((response) => {
-        res.json(response);
+        console.log(response);
+        return res.json(response);
     })
 })
 
