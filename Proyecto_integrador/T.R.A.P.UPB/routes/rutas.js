@@ -57,7 +57,7 @@ router.post('/login_trabajadores', async (req, res) => {
                 } else if (results[0].TIPO_PERSONAS_ID == 4) {
                     res.sendFile(path.join(__dirname, '../home/mecanico.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 5) {
-                    res.sendFile(path.join(__dirname, '../home/cajero.html'));
+                    res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
                 } else {
                     res.send("No esta asignado , vuelva pronto", results[0].NOMBRE);
                 }
@@ -270,6 +270,9 @@ router.post('/modificar_clientes', async (req, res) => {
     });
 })
 
+// CAJERO
+
+//Generar factura
 router.post('/generar_factura',async (req, res) =>{
     const cedula = req.body.cedula;
     const servicio = req.body.servicio;

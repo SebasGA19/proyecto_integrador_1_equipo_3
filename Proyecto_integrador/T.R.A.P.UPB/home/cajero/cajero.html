@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<title>Sistema Web</title>
-	<link rel="stylesheet" href="style.css">
+	<title>Cajero</title>
 	<link href="css/styles.css" rel="stylesheet" />
-	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-		crossorigin="anonymous" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 		crossorigin="anonymous"></script>
 </head>
@@ -19,16 +12,8 @@
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<a class="navbar-brand" href="login.html">Sistema Web</a><button class="btn btn-link btn-sm order-1 order-lg-0"
-			id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button><!-- Navbar Search-->
-		<!--<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-				<div class="input-group-append">
-				<button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-				</div>
-                </div>
-			</form>-->
-		<!-- Navbar-->
+			id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+		<!-- Navbar Search-->
 		<ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
@@ -48,82 +33,62 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-							Registro Trabajadores
+							Registro Facturas
 						</div>
 			</nav>
 		</div>
-
-
-
-
 		<div id="layoutSidenav_content">
 			<div class="container-fluid">
 				<form action="/generar_factura" method="POST" class="formulario" id="formulario">
-
-					<h4>Formulario de generar factura</h4>
-
-					<!--Grupo Cédula aqui se usará solo la cedula de la persona para conseguir el resto de datos necesarios para la factura desd -->
+					<div>
+						<h3>Formulario de generar factura</h3>
+						<div>
+							<select class="form-select" aria-label="Servicio" name="servicio">
+								<option selected>Tipo de servicio</option>
+								<option value="1">Desabulladura</option>
+								<option value="2">Pintura</option>
+								<option value="3">Complementos</option>
+								<option value="4">Mecánica general</option>
+								<option value="5">Mantenimiento preventivo</option>
+								<option value="6">Mecánica de elevado grado apoyado por tecnologías de punta</option>
+								<option value="7">Importación y comercialización de repuestos legítimos</option>
+								<option value="8">Comercialización de automóviles</option>
+							</select>
+						</div>
+					</div>
 					<div class="formulario__grupo " id="grupo__cedula">
 						<label for="cedula" class="formulario__label">Cédula</label>
 						<div class="formulario__grupo-input">
 							<input class="formulario__input" type="text" name="cedula" id="cedula" placeholder="Cédula">
 							<i class="formulario__validacion-estado fas fa-times-circle"></i>
 						</div>
-						<p class="formulario__input-error">La cédula tiene que ser de 4 a 16 digitos</p>
-
-						<p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+						<label for="cedula" class="formulario__label">Precio</label>
+						<div class="formulario__grupo-input">
+							<input class="formulario__input" type="text" name="precio" id="precio" placeholder="precio">
+							<i class="formulario__validacion-estado fas fa-times-circle"></i>
+						</div>
 					</div>
-
-					<select class="form-select" aria-label="Servicio" name="servicio">
-						<option selected>Tipo de servicio</option>
-						<option value="1">Servicio1</option>
-						<option value="2">Servicio2</option>
-						<option value="3">Servicio3</option>
-						<option value="4">Servicio4</option>
-						<option value="5">Servicio5</option>
-						<option value="6">Servicio6</option>
-						<option value="7">Servicio7</option>
-						<option value="8">Servicio8</option>
-					</select>
-
-
 					<div class="formulario__mensaje" id="formulario__mensaje">
 						<p><i class="fas fa-exclamation-triangle"></i><b>Error:</b>Por favor rellenar el formulario
 							correctamente</p>
 					</div>
-
 					<div class="formulario__grupo formulario__grupo-btn-enviar">
-						<button type="click" class="fomulario__btn">Registrar</button>
+						<button type="click" class="fomulario__btn">Enviar</button>
 						<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
 							exitosamente</p>
-
 					</div>
-
-
-
 				</form>
 				<script type="text/javascript" src="js/rut.js"></script>
 			</div>
-
-			
 		</div>
-
-
-
-
-
-
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="assets/demo/chart-area-demo.js"></script>
-	<script src="assets/demo/chart-bar-demo.js"></script>
 	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-	<script src="assets/demo/datatables-demo.js"></script>
 </body>
 
 </html>
