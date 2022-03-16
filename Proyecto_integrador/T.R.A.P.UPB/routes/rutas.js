@@ -270,4 +270,31 @@ router.post('/modificar_clientes', async (req, res) => {
     });
 })
 
+router.post('/generar_factura',async (req, res) =>{
+    const cedula = req.body.cedula;
+    const servicio = req.body.servicio;
+    const nombre = null;
+    const apellido = null;
+    const correo = null;
+    const telefono = null;
+    const direccion = null;
+
+    if (cedula && servicio) {
+        pool.query('SELECT * FROM PERSONAS WHERE CEDULA =?', [cedula], async (error, results) => {
+            if (results.length == 0) {
+                res.send("No se encontro ningun usuario");
+            } else {
+                nombre = results[0].NOMBRE;
+                apellido = results[0].APELLIDO;
+                telefono = results[0].TELEFONO;
+                correo = results[0].CORREO;
+                direccion = results[0].DIRECCION;
+                console.log("Bienvenido", results[0].CORREO);
+                des = true;
+            }
+            
+        })
+    }
+})
+
 module.exports = router
