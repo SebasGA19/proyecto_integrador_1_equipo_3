@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Secretario</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.php">Secretario TRAP</a><button
+            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
+        <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <form action="/login" method="get">
+                        <button>Salir</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
+                            Registro Trabajadores
+                        </div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
+                            <form action="/ver_clientes" method="get">
+                                <button>Ver clientes</button>
+                            </form>
+                        </div>
+            </nav>
+        </div>
+        <div class="container-fluid">
+            <form action="/modificar_clientes" method="POST" class="formulario" id="formulario">
+                <div class="container-fluid"><h3>Modificar Clientes</h3><br><div class="formulario__grupo" id="grupo__password2">
+                    <select class="form-select" aria-label="Estado" name="tipo">
+                        <option selected>Datos a modificar</option>
+                        <option value="1">Nombre</option>
+                        <option value="2">Apellido</option>
+                        <option value="3">Correo</option>
+                        <option value="4">Dirección</option>
+                    </select>
+                </div></div>
+                <!--Cédula-->
+                <div class="formulario__grupo " id="grupo__cedula">
+
+                        <label for="usuario" class="formulario__label">Cédula</label>
+                        <div class="formulario__grupo-input">
+
+                            <input class="formulario__input" type="number" name="cedula" placeholder="cédula">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        <label for="usuario" class="formulario__label">Dato a cambiar</label>
+                            <input class="formulario__input" type="text" name="cambio" placeholder="dato">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+
+                        </div>
+
+                        <div class="formulario__grupo" id="grupo__password2">
+                            <select class="form-select" aria-label="Estado" name="estado">
+                                <option selected>Estado Cliente</option>
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                            </select>
+                        </div>
+
+                        <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <button type="click" class="fomulario__btn">Modificar</button>
+                            <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
+                                exitosamente
+                            </p>
+                        </div>
+
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/datatables-demo.js"></script>
+</body>
+
+</html>

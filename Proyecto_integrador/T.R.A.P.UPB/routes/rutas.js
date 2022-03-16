@@ -4,22 +4,36 @@ const path = require('path');
 const pool = require('../db/database');
 const byscriptjs = require('bcryptjs');
 var async = require('async');
+const { response } = require('express');
+
+// GENERAL
 
 // Redirección de rutas 
+
+//HOME
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../estatica/index.html'));
 })
 
+//Rutas generales
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/login.html'));
 })
 
-router.get('/ver_trabajadores', (req, res) => {
-    res.sendFile(path.join(__dirname, '../home/ver_trabajadores.html'));
+router.get('/modificar_trabajadores', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+})
+
+router.get('/modificar_clientes', async (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
+})
+
+router.get('/ver_clientes', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/secretario/consultar_clientes.html'));
 })
 
 // Login Trabajador
-router.post('/auth', async (req, res) => {
+router.post('/login_trabajadores', async (req, res) => {
     const correo = req.body.emaillogin;
     const password = req.body.passwordlogin;
     var des = false;
@@ -35,9 +49,9 @@ router.post('/auth', async (req, res) => {
             }
             if (des == true) {
                 if (results[0].TIPO_PERSONAS_ID == 1) {
-                    res.sendFile(path.join(__dirname, '../home/principal.html'));
+                    res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 2) {
-                    res.sendFile(path.join(__dirname, '../home/secretario.html'));
+                    res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 3) {
                     res.sendFile(path.join(__dirname, '../home/recepcionista.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 4) {
@@ -52,6 +66,7 @@ router.post('/auth', async (req, res) => {
     }
 })
 
+// ADMINISTRADOR
 //Registro trabajadores
 router.post('/registro_trabajadores', async (req, res) => {
     const cedula = req.body.cedula;
@@ -67,24 +82,92 @@ router.post('/registro_trabajadores', async (req, res) => {
     if (cedula && nombre && apellido && correo && telefono && direccion && password) {
         pool.query('SELECT * FROM PERSONAS WHERE CORREO = ?', [correo], async (error, results) => {
             if (results.length == 0) {
-                pool.query('INSERT INTO PERSONAS SET ?', { CEDULA: cedula, NOMBRE: nombre, APELLIDO: apellido, CORREO: correo, TELEFONO: telefono, DIRECCION: direccion, ESTADO_PERSONA: estado, CONTRASEÑA: passcr, TIPO_PERSONAS_ID: tipo }, async(error, results) => {
+                pool.query('INSERT INTO PERSONAS SET ?', { CEDULA: cedula, NOMBRE: nombre, APELLIDO: apellido, CORREO: correo, TELEFONO: telefono, DIRECCION: direccion, ESTADO_PERSONA: estado, CONTRASEÑA: passcr, TIPO_PERSONAS_ID: tipo }, async (error, results) => {
                     if (error) {
                         console.log(error);
                     } else {
                         res.send("Alto exito");
                     }
                 })
-            } else if(results[0].CEDULA == cedula){
+            } else if (results[0].CEDULA == cedula) {
                 res.send("La cedula se encuentra duplicada");
-            }else if(results[0].TELEFONO == telefono){
+            } else if (results[0].TELEFONO == telefono) {
                 res.send("El telefono se encuentra duplicado");
-            }else{
+            } else {
                 res.send("El correo se encuentra en la base de datos");
             }
         })
     }
 })
 
+//Modificar Trabajadores
+router.post('/modificar_trabajadores', async (req, res) => {
+    const cedula = req.body.cedula;
+    pool.query('SELECT * FROM PERSONAS WHERE CEDULA = ?', [cedula], async (error, results) => {
+        if (results.length == 0 || results[0].TIPO_PERSONAS_ID == 6) {
+            res.send("Cédula no registrada en la base de datos o no tiene permiso para editar este tipo de usuario");
+        } else {
+            const tipo = req.body.tipo;
+            const dato = req.body.cambio;
+            const estado = req.body.estado;
+            if (tipo == 1) {
+                pool.query((`UPDATE PERSONAS SET NOMBRE = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else if (tipo == 2) {
+                pool.query((`UPDATE PERSONAS SET APELLIDO = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else if (tipo == 3) {
+                pool.query((`UPDATE PERSONAS SET CORREO = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else if (tipo == 4) {
+                pool.query((`UPDATE PERSONAS SET DIRECCION = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else if (tipo == 5) {
+                pool.query((`UPDATE PERSONAS SET CONTRASEÑA = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else {
+                if (estado == 1 || estado == 0) {
+                    pool.query((`UPDATE PERSONAS SET ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.send("Logrado");
+                        }
+                    });
+                } else {
+                    res.send("No se ha aplicado ningún cambio");
+                }
+            }
+        }
+    });
+})
+
+// SECRETARIO 
 // Registro clientes
 router.post('/registro_clientes', async (req, res) => {
     const cedula = req.body.cedula;
@@ -98,29 +181,89 @@ router.post('/registro_clientes', async (req, res) => {
     if (cedula && nombre && apellido && correo && telefono && direccion) {
         pool.query('SELECT * FROM PERSONAS WHERE CORREO = ?', [correo], async (error, results) => {
             if (results.length == 0) {
-                pool.query('INSERT INTO PERSONAS SET ?', { CEDULA: cedula, NOMBRE: nombre, APELLIDO: apellido, CORREO: correo, TELEFONO: telefono, DIRECCION: direccion, ESTADO_PERSONA: estado, CONTRASEÑA: null, TIPO_PERSONAS_ID: tipo }, async(error, results) => {
+                pool.query('INSERT INTO PERSONAS SET ?', { CEDULA: cedula, NOMBRE: nombre, APELLIDO: apellido, CORREO: correo, TELEFONO: telefono, DIRECCION: direccion, ESTADO_PERSONA: estado, CONTRASEÑA: null, TIPO_PERSONAS_ID: tipo }, async (error, results) => {
                     if (error) {
                         console.log(error);
                     } else {
                         res.send("Alto exito");
                     }
                 })
-            } else if(results[0].CEDULA == cedula){
+            } else if (results[0].CEDULA == cedula) {
                 res.send("La cedula se encuentra duplicada");
-            }else if(results[0].TELEFONO == telefono){
+            } else if (results[0].TELEFONO == telefono) {
                 res.send("El telefono se encuentra duplicado");
-            }else{
+            } else {
                 res.send("El correo se encuentra en la base de datos");
             }
         })
     }
 })
 
+//Consultar Clientes (API)
+router.get('/api_cliente', async (req, res) => {
+    pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6').then((response) => {
+        console.log(response);
+        return res.json(response);
+    })
+})
 
-router.get('/ver_trabajadores',async (req, res) => {
-    const data = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS');
-    //res.sendFile(path.join(__dirname,'../home/ver_trabajadores.html'),{data});
-    res.send(data);
+// Modificar cliente 
+router.post('/modificar_clientes', async (req, res) => {
+    const cedula = req.body.cedula;
+    pool.query('SELECT * FROM PERSONAS WHERE CEDULA = ?', [cedula], async (error, results) => {
+        if (results.length == 0 || results[0].TIPO_PERSONAS_ID != 6) {
+            res.send("Cédula no registrada en la base de datos o no tiene permiso para editar este cliente");
+        } else {
+            const tipo = req.body.tipo;
+            const dato = req.body.cambio;
+            const estado = req.body.estado;
+            if (tipo == 1) {
+                pool.query((`UPDATE PERSONAS SET NOMBRE = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else if (tipo == 2) {
+                pool.query((`UPDATE PERSONAS SET APELLIDO = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else if (tipo == 3) {
+                pool.query((`UPDATE PERSONAS SET CORREO = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else if (tipo == 4) {
+                pool.query((`UPDATE PERSONAS SET DIRECCION = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.send("Logrado");
+                    }
+                });
+            } else {
+                if (estado == 1 || estado == 0) {
+                    pool.query((`UPDATE PERSONAS SET ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.send("Logrado");
+                        }
+                    });
+                } else {
+                    res.send("No se ha aplicado ningún cambio");
+                }
+            }
+        }
+    });
 })
 
 router.post('/generar_factura',async (req, res) =>{
