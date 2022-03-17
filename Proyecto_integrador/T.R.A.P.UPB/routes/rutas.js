@@ -77,7 +77,7 @@ router.post('/registro_trabajadores', async (req, res) => {
     const direccion = req.body.direccion;
     const password = req.body.password;
     const tipo = req.body.tipo;
-    const estado = req.body.estado;
+    const estado = parseInt(req.body.estado);
     let passcr = await byscriptjs.hash(password, 8);
     if (cedula && nombre && apellido && correo && telefono && direccion && password) {
         pool.query('SELECT * FROM PERSONAS WHERE CORREO = ?', [correo], async (error, results) => {
@@ -177,7 +177,7 @@ router.post('/registro_clientes', async (req, res) => {
     const telefono = req.body.telefono;
     const direccion = req.body.direccion;
     const tipo = 6;
-    const estado = 1;
+    const estado = parseInt(req.body.estado);
     if (cedula && nombre && apellido && correo && telefono && direccion) {
         pool.query('SELECT * FROM PERSONAS WHERE CORREO = ?', [correo], async (error, results) => {
             if (results.length == 0) {
@@ -272,33 +272,29 @@ router.post('/modificar_clientes', async (req, res) => {
 
 // CAJERO
 
-//Generar factura
+//Servicios
 router.post('/generar_factura',async (req, res) =>{
-    const cedula = req.body.cedula;
+    const cedula = parseInt(req.body.cedula);
+    const id  = parseInt(req.body.id);
     const servicio = req.body.servicio;
-    const nombre = null;
-    const apellido = null;
-    const correo = null;
-    const telefono = null;
-    const direccion = null;
-
-    if (cedula && servicio) {
-        pool.query('SELECT * FROM PERSONAS WHERE CEDULA =?', [cedula], async (error, results) => {
-            if (results.length == 0) {
-                res.send("No se encontro ningun usuario");
-            } else {
-                nombre = results[0].NOMBRE;
-                apellido = results[0].APELLIDO;
-                telefono = results[0].TELEFONO;
-                correo = results[0].CORREO;
-                direccion = results[0].DIRECCION;
-                console.log("Bienvenido", results[0].CORREO);
-                des = true;
+    const precio = parseInt(req.body.precio);
+    if (cedula && servicio && precio && id) {
+        pool.query((`SELECT * FROM PERSONAS , VEHICULOS WHERE PERSONAS_CEDULA = CEDULA AND CEDULA = '${cedula}' AND ID = '${id}' AND TIPO_PERSONAS_ID = 6`),async(err,result)=>{
+            if(err){
+                console.log(error);
+            }else if(result.length == 0){
+                console.log("No existe ese usuario o no tiene vehiculo")
+            }else{
+                pool.query((`INSERT INTO SERVICIOS (VEHICULOS_ID,PRECIO,TIPO_SERVICIO,ESTADO) SET VALUES('${id}','')`),async(error,resultados)=>{
+                    
+                })
             }
-            
-        })
+        });
+    }else {
+        res.send("Rellene bien la información");
     }
 })
+
 
 router.get('/consultar_trabajadores', async (req, res) => {
 
@@ -309,4 +305,8 @@ router.get('/consultar_trabajadores', async (req, res) => {
     //res.json(PERSONAS);
     res.send(json_personas);
   });
+
+//Facturas
+
+
 module.exports = router
