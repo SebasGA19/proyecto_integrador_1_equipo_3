@@ -300,4 +300,13 @@ router.post('/generar_factura',async (req, res) =>{
     }
 })
 
+router.get('/consultar_trabajadores', async (req, res) => {
+
+    
+    const PERSONAS = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6');
+    json_personas = JSON.stringify(PERSONAS);
+    //console.log(json_personas);
+    //res.json(PERSONAS);
+    res.send(json_personas);
+  });
 module.exports = router

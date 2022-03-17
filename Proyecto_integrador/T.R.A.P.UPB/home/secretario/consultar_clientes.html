@@ -2,69 +2,98 @@
 <html lang="en">
 
 <head>
-    <title>Consultar_Clientes</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css" />
-    <script type="text/javascript"
-        src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
 </head>
 
 <body>
-    <div class="table-contenedor">
-        <p>Clientes Registrados</p>
-        <div class="container p-4">
-            <div class="row">
-                <table id="tabla-usuarios">
-                    <thead>
-                        <th>Cédula</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Dirección</th>
-                        <th>Estado_Persona</th>
-                        <th>Tipo_Persona</th>
-                    </thead>
-                    <tbody>
-                        <button type="button" onclick="datos()">Probar prompt</button>
-                    </tbody>
-                </table>
+    <div class="container-fluid">
+        <form action="/consultar_trabajadores" method="GET" class="formulario" id="formulario">
+
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <button type="click" class="fomulario__btn">Registrar</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
+                    exitosamente</p>
             </div>
-        </div>
+
+            <table class="table-striped border-success">
+                <thead>
+                    <tr>
+                        <th data-field="CEDULA">
+                            <span class="text-success">
+                                CEDULA
+                            </span>
+                        </th>
+                        <th data-field="NOMBRE">
+                            <span class="text-success">
+                                NOMBRE
+                            </span>
+                        </th>
+                        <th data-field="APELLIDO">
+                            <span class="text-success">
+                                APELLIDO
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+
+        </form>
+        <script type="text/javascript" src="js/rut.js"></script>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+          // Use the given data to create 
+          // the table and display it
+          $('table').bootstrapTable({
+            data: mydata
+          });
+        });
+        
+        // Specify the JSON data to be displayed
+        var mydata = [
+        {
+          "CEDULA": "24323",
+          "name": "Mark Smith",
+          "date": "25/5/2020"
+        },
+        {
+          "CEDULA": "24564",
+          "name": "Caitlin MacDonald",
+          "date": "17/5/2020"
+        },
+        {
+          "CEDULA": "24345",
+          "name": "Jessie Johnson ",
+          "date": "1/5/2020"
+        },
+        {
+          "CEDULA": "24874",
+          "name": "Alen Williams",
+          "date": "14/5/2020"
+        },
+        {
+          "CEDULA": "24323",
+          "name": "Maria Garcia ",
+          "date": "13/5/2020"
+        }
+      ];
+       // console.log(mydata)
+        
+      </script>
 </body>
 
 </html>
-<script>
-    const express = require('express');
-    const router = express.Router();
-    const path = require('path');
-    const pool = require('../db/database');
-
-    function datos(){
-        var data = pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6');
-        //console.log(data);
-        alert("xds");
-        //return data;
-    }
-
-    var data = pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6');
-    console.log(data);
-    $(document).ready(function () {
-        $(`#tabla-usuarios`).DataTable({
-            "ajax": datos(),
-            "columns": [
-                { "data": "CEDULA" },
-                { "RowDataPacket": "NOMBRE" },
-                { "RowDataPacket": "APELLIDO" },
-                { "RowDataPacket": "CORREO" },
-                { "RowDataPacket": "TELEFONO" },
-                { "RowDataPacket": "DIRECCION" },
-                { "RowDataPacket": "ESTADO_PERSONA" }
-            ]
-        });
-    });  
-</script>
