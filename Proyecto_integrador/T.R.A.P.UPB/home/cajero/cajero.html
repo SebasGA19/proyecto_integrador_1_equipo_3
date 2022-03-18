@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -41,47 +42,39 @@
 			<div class="container-fluid">
 				<form action="/generar_factura" method="POST" class="formulario" id="formulario">
 					<div>
-						<h3>Formulario de generar factura</h3>
+						<h3 style="text-align: center;">Formulario de generar factura</h3>
 						<div>
-							<select class="form-select" aria-label="Servicio" name="servicio">
-								<option selected>Tipo de servicio</option>
-								<option value="1">Desabulladura</option>
-								<option value="2">Pintura</option>
-								<option value="3">Complementos</option>
-								<option value="4">Mecánica general</option>
-								<option value="5">Mantenimiento preventivo</option>
-								<option value="6">Mecánica de elevado grado apoyado por tecnologías de punta</option>
-								<option value="7">Importación y comercialización de repuestos legítimos</option>
-								<option value="8">Comercialización de automóviles</option>
-							</select>
+							<div class="formulario__grupo-input">
+								<label for="cedula" class="formulario__label">Código Servicio</label>
+								<input class="formulario__input" type="number" name="servicio" id="servicio"
+									placeholder="servicio">
+								<i class="formulario__validacion-estado fas fa-times-circle"></i>
+							</div>
+
+							<div class="formulario__grupo-input">
+								<label for="cedula" class="formulario__label">Cédula</label>
+								<input class="formulario__input" type="number" name="cedula" id="cedula"
+									placeholder="Cédula">
+								<i class="formulario__validacion-estado fas fa-times-circle"></i>
+							</div>
+
+							<div class="formulario__grupo-input">
+								<label for="cedula" class="formulario__label">ID Vehiculo</label>
+								<input class="formulario__input" type="number" name="id" id="id" placeholder="Cédula">
+								<i class="formulario__validacion-estado fas fa-times-circle"></i>
+							</div>
+
+							<div class="formulario__grupo-input">
+								<label for="cedula" class="formulario__label">Precio</label>
+								<input class="formulario__input" type="number" name="precio" id="precio"
+									placeholder="precio">
+								<i class="formulario__validacion-estado fas fa-times-circle"></i>
+							</div>
+
+							<button type="click" class="fomulario__btn">Enviar</button>
 						</div>
 					</div>
-					<div class="formulario__grupo " id="grupo__cedula">
-						<label for="cedula" class="formulario__label">Cédula</label>
-						<div class="formulario__grupo-input">
-							<input class="formulario__input" type="number" name="cedula" id="cedula" placeholder="Cédula">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<label for="cedula" class="formulario__label">ID Vehiculo</label>
-						<div class="formulario__grupo-input">
-							<input class="formulario__input" type="number" name="id" id="id" placeholder="Cédula">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<label for="cedula" class="formulario__label">Precio</label>
-						<div class="formulario__grupo-input">
-							<input class="formulario__input" type="text" name="precio" id="precio" placeholder="precio">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-					</div>
-					<div class="formulario__mensaje" id="formulario__mensaje">
-						<p><i class="fas fa-exclamation-triangle"></i><b>Error:</b>Por favor rellenar el formulario
-							correctamente</p>
-					</div>
-					<div class="formulario__grupo formulario__grupo-btn-enviar">
-						<button type="click" class="fomulario__btn">Enviar</button>
-						<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
-							exitosamente</p>
-					</div>
+
 				</form>
 				<script type="text/javascript" src="js/rut.js"></script>
 			</div>

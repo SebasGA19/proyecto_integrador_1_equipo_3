@@ -19,7 +19,17 @@ INSERT INTO PERSONAS VALUES(7,'Angela','Paola','angela@trap.com',3132124,'Florid
 
 -- Carros base 
 
-INSERT INTO VEHICULOS VALUES(123,'SparkGT',2020,1,'Mantenimiento General',6,6);
-INSERT INTO VEHICULOS VALUES(12345,'Nissan',2015,1,'Cambio De Pintura',7,6);
+INSERT INTO VEHICULOS VALUES(123,'SparkGT',2020,'Mantenimiento General',6,6);
+INSERT INTO VEHICULOS VALUES(12345,'Nissan',2015,'Cambio De Pintura',7,6);
 
+-- Servicios base
+
+INSERT INTO TIPO_SERVICIO VALUES (1,'Desabulladura');
+INSERT INTO TIPO_SERVICIO VALUES (2,'Pintura');
+INSERT INTO TIPO_SERVICIO VALUES (3,'Complementos');
+INSERT INTO TIPO_SERVICIO VALUES (4,'Mecánica general');
+INSERT INTO TIPO_SERVICIO VALUES (5,'Mantenimiento preventivo');
+INSERT INTO TIPO_SERVICIO VALUES (6,'Mecánica de elevado grado apoyado por tecnologías de punta');
+INSERT INTO TIPO_SERVICIO VALUES (7,'Importación y comercialización de repuestos legítimos');
+INSERT INTO TIPO_SERVICIO VALUES (8,'Comercialización de automóviles');
 

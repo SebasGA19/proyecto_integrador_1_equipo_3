@@ -274,19 +274,23 @@ router.post('/modificar_clientes', async (req, res) => {
 
 //Servicios
 router.post('/generar_factura',async (req, res) =>{
-    const cedula = parseInt(req.body.cedula);
-    const id  = parseInt(req.body.id);
     const servicio = req.body.servicio;
-    const precio = parseInt(req.body.precio);
+    const cedula = req.body.cedula;
+    const id  = req.body.id;
+    const precio = req.body.precio;
     if (cedula && servicio && precio && id) {
-        pool.query((`SELECT * FROM PERSONAS , VEHICULOS WHERE PERSONAS_CEDULA = CEDULA AND CEDULA = '${cedula}' AND ID = '${id}' AND TIPO_PERSONAS_ID = 6`),async(err,result)=>{
+        pool.query((`SELECT * FROM PERSONAS AS P , VEHICULOS AS V , TIPO_SERVICIO AS T WHERE V.PERSONAS_CEDULA = P.CEDULA AND P.CEDULA = '${cedula}' AND V.ID = '${id}' AND P.TIPO_PERSONAS_ID = 6 AND T.ID = '${servicio}'`),async(err,result)=>{
             if(err){
-                console.log(error);
+                console.log(err);
             }else if(result.length == 0){
                 console.log("No existe ese usuario o no tiene vehiculo")
             }else{
-                pool.query((`INSERT INTO SERVICIOS (VEHICULOS_ID,PRECIO,TIPO_SERVICIO,ESTADO) SET VALUES('${id}','')`),async(error,resultados)=>{
-                    
+                pool.query((`INSERT INTO SERVICIOS (PRECIO,ACTIVO,TIPO_SERVICIO_ID,VEHICULOS_ID) SET VALUES(${precio},${servicio},${id})`),async(error,resultados)=>{
+                    if(error){
+                        res.send(error);
+                    }else{
+                        res.send("Exito");
+                    }
                 })
             }
         });
@@ -297,8 +301,6 @@ router.post('/generar_factura',async (req, res) =>{
 
 
 router.get('/consultar_trabajadores', async (req, res) => {
-
-    
     const PERSONAS = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6');
     json_personas = JSON.stringify(PERSONAS);
     //console.log(json_personas);
