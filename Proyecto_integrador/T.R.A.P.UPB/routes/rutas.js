@@ -5,6 +5,7 @@ const pool = require('../db/database');
 const byscriptjs = require('bcryptjs');
 var async = require('async');
 const { response } = require('express');
+const { json } = require('body-parser');
 
 // GENERAL
 
@@ -331,7 +332,12 @@ router.get('/consultar_trabajadores', async (req, res) => {
     json_personas = JSON.stringify(PERSONAS);
     //console.log(json_personas);
     //res.json(PERSONAS);
+
     res.send(json_personas);
 });
+
+
+//Facturas
+
 
 module.exports = router
