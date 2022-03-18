@@ -32,6 +32,10 @@ router.get('/ver_clientes', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/secretario/consultar_clientes.html'));
 })
 
+router.get('/ver_factura', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
+})
+
 // Login Trabajador
 router.post('/login_trabajadores', async (req, res) => {
     const correo = req.body.emaillogin;
@@ -201,10 +205,10 @@ router.post('/registro_clientes', async (req, res) => {
 
 //Consultar Clientes (API)
 router.get('/api_cliente', async (req, res) => {
-    pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6', async(err,result) => {
-        if(err){
+    pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6', async (err, result) => {
+        if (err) {
             console.log(err);
-        }else{
+        } else {
             console.log(result);
             return result;
         }
@@ -273,32 +277,54 @@ router.post('/modificar_clientes', async (req, res) => {
 // CAJERO
 
 //Servicios
-router.post('/generar_factura',async (req, res) =>{
+router.post('/generar_servicio', async (req, res) => {
     const servicio = req.body.servicio;
     const cedula = req.body.cedula;
-    const id  = req.body.id;
+    const id_vehiculo = req.body.id;
     const precio = req.body.precio;
-    if (cedula && servicio && precio && id) {
-        pool.query((`SELECT * FROM PERSONAS AS P , VEHICULOS AS V , TIPO_SERVICIO AS T WHERE V.PERSONAS_CEDULA = P.CEDULA AND P.CEDULA = '${cedula}' AND V.ID = '${id}' AND P.TIPO_PERSONAS_ID = 6 AND T.ID = '${servicio}'`),async(err,result)=>{
-            if(err){
+    if (cedula && servicio && precio && id_vehiculo) {
+        pool.query((`SELECT * FROM PERSONAS AS P , VEHICULOS AS V , TIPO_SERVICIO AS T WHERE V.PERSONAS_CEDULA = P.CEDULA AND P.CEDULA = '${cedula}' AND V.ID = '${id_vehiculo}' AND P.TIPO_PERSONAS_ID = 6 AND T.ID = '${servicio}'`), async (err, result) => {
+            if (err) {
                 console.log(err);
-            }else if(result.length == 0){
+            } else if (result.length == 0) {
                 console.log("No existe ese usuario o no tiene vehiculo")
-            }else{
-                pool.query((`INSERT INTO SERVICIOS (PRECIO,ACTIVO,TIPO_SERVICIO_ID,VEHICULOS_ID) SET VALUES(${precio},${servicio},${id})`),async(error,resultados)=>{
-                    if(error){
+            } else {
+                pool.query((`INSERT INTO SERVICIOS (PRECIO,ACTIVO,TIPO_SERVICIO_ID,VEHICULOS_ID) VALUES (${precio},1,${servicio},${id_vehiculo})`), async (error, resultados) => {
+                    if (error) {
                         res.send(error);
-                    }else{
+                    } else {
                         res.send("Exito");
                     }
                 })
             }
         });
-    }else {
+    } else {
         res.send("Rellene bien la información");
     }
 })
 
+//Facturas
+router.post('/generar_factura', async (req, res) => {
+    const cedula = req.body.cedula;
+    const id_vehiculo = req.body.id;
+    if (cedula && id_vehiculo) {
+        pool.query((`SELECT CONCAT(P.NOMBRE , " " , P.APELLIDO ) AS NOMBRES , SUM(S.PRECIO) AS PRECIO , NOW() AS FECHA , P.CEDULA , P.TIPO_PERSONAS_ID FROM PERSONAS AS P , VEHICULOS AS V , SERVICIOS AS S WHERE V.PERSONAS_CEDULA = P.CEDULA AND P.CEDULA = ${cedula} AND V.ID = ${id_vehiculo} AND P.TIPO_PERSONAS_ID = 6 AND S.VEHICULOS_ID = V.ID AND S.ACTIVO = 1`), async (error, result) => {
+            if (result.length == 0) {
+                res.send("NO HAY NINGUN DATO");
+            } else {
+                const nombre = result[0].NOMBRES;
+                const precio = result[0].PRECIO;
+                pool.query((`INSERT INTO FACTURA (NOMBRE_COMPLETO,PRECIO_FINAL,FECHA,PERSONAS_CEDULA,PERSONAS_TIPO_PERSONAS_ID) VALUES('${nombre}',${precio},NOW(),'${cedula}',6)`), async (error) => {
+                    pool.query((`UPDATE SERVICIOS SET ACTIVO = 0 WHERE VEHICULOS_ID = ${id_vehiculo}`), async (ror) => {
+                        res.send("Funciono");
+                    })
+                })
+            }
+        })
+    } else {
+        res.send("Rellene bien la información");
+    }
+})
 
 router.get('/consultar_trabajadores', async (req, res) => {
     const PERSONAS = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6');
@@ -306,9 +332,6 @@ router.get('/consultar_trabajadores', async (req, res) => {
     //console.log(json_personas);
     //res.json(PERSONAS);
     res.send(json_personas);
-  });
-
-//Facturas
-
+});
 
 module.exports = router

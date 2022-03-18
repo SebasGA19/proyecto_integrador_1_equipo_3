@@ -33,3 +33,4 @@ INSERT INTO TIPO_SERVICIO VALUES (6,'Mecánica de elevado grado apoyado por tecn
 INSERT INTO TIPO_SERVICIO VALUES (7,'Importación y comercialización de repuestos legítimos');
 INSERT INTO TIPO_SERVICIO VALUES (8,'Comercialización de automóviles');
 
+

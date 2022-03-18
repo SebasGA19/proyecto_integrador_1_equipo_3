@@ -36,25 +36,14 @@
 						<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
 							Registro Facturas
 						</div>
-
-						<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-							<a href="/ver_factura"> Ver factura</a>
-						</div>
 			</nav>
 		</div>
 		<div id="layoutSidenav_content">
 			<div class="container-fluid">
-				<form action="/generar_servicio" method="POST" class="formulario" id="formulario">
+				<form action="/generar_factura" method="POST" class="formulario" id="formulario">
 					<div>
 						<h3 style="text-align: center;">Formulario de generar factura</h3>
 						<div>
-							<div class="formulario__grupo-input">
-								<label for="cedula" class="formulario__label">Código Servicio</label>
-								<input class="formulario__input" type="number" name="servicio" id="servicio"
-									placeholder="servicio">
-								<i class="formulario__validacion-estado fas fa-times-circle"></i>
-							</div>
-
 							<div class="formulario__grupo-input">
 								<label for="cedula" class="formulario__label">Cédula</label>
 								<input class="formulario__input" type="number" name="cedula" id="cedula"
@@ -67,15 +56,7 @@
 								<input class="formulario__input" type="number" name="id" id="id" placeholder="Cédula">
 								<i class="formulario__validacion-estado fas fa-times-circle"></i>
 							</div>
-
-							<div class="formulario__grupo-input">
-								<label for="cedula" class="formulario__label">Precio</label>
-								<input class="formulario__input" type="number" name="precio" id="precio"
-									placeholder="precio">
-								<i class="formulario__validacion-estado fas fa-times-circle"></i>
-							</div>
-
-							<button type="click" class="fomulario__btn">Enviar</button>
+							<button type="click" class="fomulario__btn">Facturar</button>
 						</div>
 					</div>
 
