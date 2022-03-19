@@ -206,14 +206,23 @@ router.post('/registro_clientes', async (req, res) => {
 
 //Consultar Clientes (API)
 router.get('/api_cliente', async (req, res) => {
-    pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6', async (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result);
-            return result;
+    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6'),async(error,result)=>{
+        var data = [];
+        var subdata = [];
+        for (var i = 0 ; i < result.length ; i++){
+            subdata.length = 0;
+            subdata.push(result[i].CEDULA.toString());
+            subdata.push(result[i].NOMBRE.toString());
+            subdata.push(result[i].APELLIDO.toString());
+            subdata.push(result[i].CORREO.toString());
+            subdata.push(result[i].TELEFONO.toString());
+            subdata.push(result[i].DIRECCION.toString());
+            subdata.push(result[i].TIPO_PERSONAS_ID.toString());
+            data.push(subdata);
         }
+        res.render(data)
     })
+    
 })
 
 // Modificar cliente 
@@ -326,18 +335,5 @@ router.post('/generar_factura', async (req, res) => {
         res.send("Rellene bien la información");
     }
 })
-
-router.get('/consultar_trabajadores', async (req, res) => {
-    const PERSONAS = await pool.query('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , ESTADO_PERSONA , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6');
-    json_personas = JSON.stringify(PERSONAS);
-    //console.log(json_personas);
-    //res.json(PERSONAS);
-
-    res.send(json_personas);
-});
-
-
-//Facturas
-
 
 module.exports = router
