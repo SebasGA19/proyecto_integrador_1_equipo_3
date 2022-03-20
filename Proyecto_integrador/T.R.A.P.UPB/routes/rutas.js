@@ -26,11 +26,14 @@ router.get('/modificar_trabajadores', (req, res) => {
 })
 
 router.get('/modificar_clientes', async (req, res) => {
-    res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
+    res.sendFile(path.join(__dirname, '../home/administrador/modificar_clientes.html'));
 })
 
 router.get('/ver_clientes', (req, res) => {
-    res.sendFile(path.join(__dirname, '../home/secretario/consultar_clientes.html'));
+    res.sendFile(path.join(__dirname, '../home/administriador/consultar_clientes.html'));
+})
+router.get('/principal', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
 })
 
 router.get('/ver_factura', (req, res) => {
