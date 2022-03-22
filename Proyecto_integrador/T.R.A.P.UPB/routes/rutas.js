@@ -21,6 +21,8 @@ router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/login.html'));
 })
 
+
+//MODIFICAR
 router.get('/modificar_trabajadores', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
 })
@@ -29,13 +31,23 @@ router.get('/modificar_clientes', async (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/modificar_clientes.html'));
 })
 
+
+//CONSULTAR
 router.get('/ver_clientes', (req, res) => {
-    res.sendFile(path.join(__dirname, '../home/administriador/consultar_clientes.html'));
+    res.sendFile(path.join(__dirname, '../home/secretario/consultar_clientes.html'));
 })
+
+router.get('/ver_trabajador', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/consultar_trabajadores.html'));
+})
+
+//OTROS
 router.get('/principal', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
 })
 
+
+//FACTURACIÓN
 router.get('/ver_factura', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
 })
@@ -175,6 +187,30 @@ router.post('/modificar_trabajadores', async (req, res) => {
     });
 })
 
+
+//Consultar Trabajadores (API)
+router.get('/api_trabajador', async (req, res) => {
+    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID != 6'),async(error,result)=>{
+        var data = [];
+        var subdata = [];
+        for (var i = 0 ; i < result.length ; i++){
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].CEDULA.toString());
+            subdata.push(result[i].NOMBRE.toString());
+            subdata.push(result[i].APELLIDO.toString());
+            subdata.push(result[i].CORREO.toString());
+            subdata.push(result[i].TELEFONO.toString());
+            subdata.push(result[i].DIRECCION.toString());
+            subdata.push(result[i].TIPO_PERSONAS_ID.toString());
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+    
+})
+
 // SECRETARIO 
 // Registro clientes
 router.post('/registro_clientes', async (req, res) => {
@@ -213,17 +249,18 @@ router.get('/api_cliente', async (req, res) => {
         var data = [];
         var subdata = [];
         for (var i = 0 ; i < result.length ; i++){
-            subdata.length = 0;
+            aux = []
+            subdata = aux;
             subdata.push(result[i].CEDULA.toString());
             subdata.push(result[i].NOMBRE.toString());
             subdata.push(result[i].APELLIDO.toString());
             subdata.push(result[i].CORREO.toString());
             subdata.push(result[i].TELEFONO.toString());
             subdata.push(result[i].DIRECCION.toString());
-            subdata.push(result[i].TIPO_PERSONAS_ID.toString());
             data.push(subdata);
         }
-        res.render(data)
+        //console.log(data);
+        res.send(data);
     })
     
 })

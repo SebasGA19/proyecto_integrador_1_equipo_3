@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Consultar Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="js/rut.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+
+
+
+</head>
+
+<body class="sb-nav-fixed" background="https://fondosmil.com/fondo/75479.jpg">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.php">Secretario TRAP</a><button
+            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
+
+        <!-- Navbar Search-->
+        <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <form action="/login" method="get">
+                        <button>Salir</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
+                            Consultar Clientes
+                        </div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
+                            <a href='/ver_clientes'> Ver Clientes</a>
+                        </div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
+                            <a href='/modificar_clientes'>Modificar Clientes</a>
+                        </div>
+            </nav>
+        </div>
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <table id="example" class="display" width="100%"></table>
+            </div>
+
+            <script type="text/javascript">
+                var bd = 'http://localhost:4000/api_trabajador';
+                $(document).ready(function () {
+                    $.ajax({
+                        url: bd,
+                        context: document.body
+                    }).done(function (oResultado) {
+
+                        $('#example').DataTable({
+                            data: oResultado,
+                            columns: [
+                                { title: "CEDULA" },
+                                { title: "NOMBRE" },
+                                { title: "APELLIDO" },
+                                { title: "CORREO" },
+                                { title: "DIRECCION" },
+                                { title: "TELEFONO" },
+                                { title: "TIPO_TRABAJADOR" }
+                            ]
+                        });
+
+                    });
+                });
+            </script>
+
+        </div>
+    </div>
+</body>
+</html>
