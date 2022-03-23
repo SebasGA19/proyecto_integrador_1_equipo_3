@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
         crossorigin="anonymous"></script>
 </head>
-<body class="sb-nav-fixed" background="https://wallpaperaccess.com/full/675905.jpg">
+<body class="sb-nav-fixed" background="https://fondosmil.com/fondo/9846.jpg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="/principal.html">Sistema Web</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
@@ -36,11 +36,13 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div >-----------------------------------
-                            <button class="btn btn-info">Registro Trabajadores</button>
+                            <form action="/principal">
+                                <button  class="btn btn-info">Registro Trabajadores</button>
+                            </form>
                         </div>
                         <div >----------------------------------
                             <form action="/ver_trabajador" method="get">
-                                <button class="btn btn-info">Ver Trabajadores</button>
+                                <button class="btn btn-light">Ver Trabajadores</button>
                             </form>
                         </div>
 
@@ -51,7 +53,7 @@
                         </div>
                         <div >-----------------------------------
                             <form action="/generar_informe_servicios" method="get">
-                                <button class="btn btn-info">Generar Informe Servicios</button>
+                                <button class="btn btn-light">Generar Informe Servicios</button>
                             </form>
                         </div>
                         <div >-----------------------------------
@@ -63,13 +65,13 @@
             </nav>
         </div>
     </div>
-    <div id="layoutSidenav_content">
+    <div id="layoutSidenav_content" >
         <main>
             <div class="container-fluid">
 
                 <form action="/registro_trabajadores" method="POST" class="formulario" id="formulario">
 
-                    <h4>Formulario registro</h4>
+                    <h3>Formulario registro</h3>
 
                     <!--Grupo Cédula-->
                <!--Grupo Cédula-->

@@ -3,3 +3,5 @@ npm i express express-handlebars express-session mysql express-mysql-session mor
 npm i nodemon -D
 
 npm install --save body-parser
+
+npm i node-notifier
