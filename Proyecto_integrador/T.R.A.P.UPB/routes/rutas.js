@@ -168,7 +168,12 @@ router.post('/modificar_trabajadores', async (req, res) => {
     const cedula = req.body.cedula;
     pool.query('SELECT * FROM PERSONAS WHERE CEDULA = ?', [cedula], async (error, results) => {
         if (results.length == 0 || results[0].TIPO_PERSONAS_ID == 6) {
-            res.send("Cédula no registrada en la base de datos o no tiene permiso para editar este tipo de usuario");
+            notifier.notify({
+                title: 'ADVERTENCIA',
+                message: 'Cedula no registrada o no tiene permiso pa modificar este usuario',
+                wait:false
+              });
+              res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
         } else {
             const tipo = req.body.tipo;
             const dato = req.body.cambio;
@@ -180,10 +185,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  result[0].NOMBRE,
+                            message: 'Se ha modificado el usuario ' +  results[0].NOMBRE,
                             wait:false
                           });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores'));
+                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else if (tipo == 2) {
@@ -193,10 +198,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  result[0].NOMBRE,
+                            message: 'Se ha modificado el usuario ' +  results[0].NOMBRE,
                             wait:false
                           });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores'));
+                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else if (tipo == 3) {
@@ -206,10 +211,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  result[0].NOMBRE,
+                            message: 'Se ha modificado el usuario ' +  results[0].NOMBRE,
                             wait:false
                           });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores'));
+                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else if (tipo == 4) {
@@ -219,10 +224,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  result[0].NOMBRE,
+                            message: 'Se ha modificado el usuario ' +  results[0].NOMBRE,
                             wait:false
                           });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores'));
+                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else if (tipo == 5) {
@@ -232,10 +237,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  result[0].NOMBRE,
+                            message: 'Se ha modificado el usuario ' + results[0].NOMBRE,
                             wait:false
                           });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores'));
+                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else {
@@ -246,10 +251,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                         } else {
                             notifier.notify({
                                 title: 'ADVERTENCIA',
-                                message: 'Se ha modificado el usuario ' +  result[0].NOMBRE,
+                                message: 'Se ha actualizado la actividad del usuario ' +  results[0].NOMBRE,
                                 wait:false
                               });
-                              res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores'));
+                              res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                         }
                     });
                 } else {
@@ -258,7 +263,7 @@ router.post('/modificar_trabajadores', async (req, res) => {
                         message: 'No se ha aplicado ningún cambio',
                         wait:false
                       });
-                      res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores'));
+                      res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                 }
             }
         }
