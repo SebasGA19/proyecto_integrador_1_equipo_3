@@ -34,15 +34,22 @@
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                            Registro Trabajadores
-                        </div>
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                            <form action="/ver_clientes" method="get">
-                                <button>Ver clientes</button>
-                            </form>
-                        </div>
+                    <div >-----------------------------------
+                        <form action="/registro_clientes">
+                            <button  class="btn btn-info">Registro Cientes</button>
+                        </form>
+                    </div>
+                    <div >----------------------------------
+                        <form action="/ver_clientes" method="get">
+                            <button class="btn btn-info">Ver Clientes</button>
+                        </form>
+                    </div>
+
+                    <div >-----------------------------------
+                        <form action="/modificar_clientes" method="get">
+                            <button class="btn btn-info">Modificar Clientes</button>
+                        </form>
+                    </div>  
             </nav>
         </div>
         <div class="container-fluid">

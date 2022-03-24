@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -36,32 +36,11 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div >-----------------------------------
-                            <form action="/principal">
-                                <button  class="btn btn-info">Registro Trabajadores</button>
+                            <form action="/recepcion">
+                                <button  class="btn btn-info">Recepcion de vehiculos</button>
                             </form>
                         </div>
-                        <div >----------------------------------
-                            <form action="/ver_trabajador" method="get">
-                                <button class="btn btn-light">Ver Trabajadores</button>
-                            </form>
-                        </div>
-
-                        <div >-----------------------------------
-                            <form action="/modificar_trabajadores" method="get">
-                                <button class="btn btn-info">Modificar Trabajadores</button>
-                            </form>
-                        </div>
-                        <div >-----------------------------------
-                            <form action="/generar_informe" method="get">
-                                <button class="btn btn-light">Generar Informe Servicios</button>
-                            </form>
-                        </div>
-                        <div >-----------------------------------
-                            <form action="/registro_servicios" method="get">
-                                <button class="btn btn-info">Registro de Servicios</button>
-                            </form>
-                        </div>
-                        
+            
             </nav>
         </div>
     </div>
@@ -69,57 +48,65 @@
         <main>
             <div class="container-fluid">
 
-            
-
-
-                <form action="/generar_servicio" method="POST" class="formulario" id="formulario">
+                <form action="/recepcion_vehiculo" method="POST" class="formulario" id="formulario">
 
                     <h3>Formulario Registro Servicios</h3>
 
                     <!--Grupo Cédula-->
                <!--Grupo Cédula-->
-         <div class="formulario__grupo " id="grupo__cedula">
-            <label for="cedula" class="formulario__label">Cédula</label>
+         <div class="formulario__grupo " id="grupo__id">
+            <label for="cedula" class="formulario__label">Id</label>
             <div class="formulario__grupo-input">
-                <input class="formulario__input" type="text" name="cedula" id="cedula" placeholder="Cédula">
+                <input class="formulario__input" type="text" name="id" id="id" placeholder="Id">
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">La cédula tiene que ser de 4 a 16 digitos</p>
+            <p class="formulario__input-error">La id tiene que ser de 4 a 16 digitos</p>
 
             <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
         </div>
 
                     <!--Grupo Servicio-->
-                    <div class="formulario__grupo" id="grupo__servicio">
-                        <label for="servicio" class="formulario__label">Servicio</label>
+                    <div class="formulario__grupo" id="grupo__Modelo">
+                        <label for="servicio" class="formulario__label">Modelo</label>
                         <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="text" name="servicio" placeholder="Servicio">
+                            <input class="formulario__input" type="text" name="modelo" placeholder="Modelo">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">Servicio no valido, solo puede contener letras</p>
+                        <p class="formulario__input-error">Modelo no valido, solo puede contener letras</p>
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>
                     <!--Grupo Id-->
-                    <div class="formulario__grupo" id="grupo__id">
-                        <label for="Id" class="formulario__label">Id</label>
+                    <div class="formulario__grupo" id="grupo__año">
+                        <label for="Id" class="formulario__label">Año</label>
                         <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="number" name="id" placeholder="412">
+                            <input class="formulario__input" type="number" name="ano" placeholder="412">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">La id solo puede contener números y el máximo son 10
+                        <p class="formulario__input-error">El año solo puede contener números y el máximo son 10
                             dígitos</p>
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>
-                    <!--Grupo Precio-->
-                    <div class="formulario__grupo" id="grupo__precio">
-                        <label for="Id" class="formulario__label">Precio</label>
+                    <!--Grupo Servicio-->
+                    <div class="formulario__grupo" id="grupo__descripcion">
+                        <label for="servicio" class="formulario__label">Descripcion</label>
                         <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="number" name="precio" placeholder="412">
+                            <input class="formulario__input" type="text" name="descripcion" placeholder="Descripcion">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">El precio solo puede contener números </p>
+                        <p class="formulario__input-error">Descripcion no valida, solo puede contener letras</p>
+
+                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+                    </div>
+                    <!--Grupo Precio-->
+                    <div class="formulario__grupo" id="grupo__personas_cedula">
+                        <label for="Id" class="formulario__label">Cedula</label>
+                        <div class="formulario__grupo-input">
+                            <input class="formulario__input" type="number" name="personas_cedula" placeholder="412">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">La cedula solo puede contener números </p>
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>

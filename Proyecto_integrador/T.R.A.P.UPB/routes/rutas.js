@@ -46,6 +46,15 @@ router.get('/ver_trabajador', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/consultar_trabajadores.html'));
 })
 
+router.post('/consultar_estado_servicio', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/mecanico/consultar_estado_servicio.html'));
+})
+
+
+router.get('/recepcion', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
+})
+
 
 
 //OTROS
@@ -57,11 +66,29 @@ router.get('/cajero', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
 })
 
+//Entrega de vehiculo
+router.post('/entrega_vehiculo', (req, res) => {
+    const id= req.body.cedula;
+   // pool.query((`SELECT ID , VEHICULOS_ID , ACTIVO FROM SERVICIOS AS S, VEHICULOS AS V WHERE S.ACTIVO = 0 AND  '${ id}' = V.ID`),async(error,results)=>{
+        console.log(id);
+         console.log(results)
+        //console.log(data);
+    })
+    
+//})
 
 
 //OTROS
 router.get('/registro_servicios', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/registro_servicios.html'));
+})
+//OTROS
+router.get('/registro_clientes', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
+})
+//Estado del servicio
+router.get('/mecanico', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/mecanico/mecanico.html'));
 })
 
 
@@ -101,9 +128,9 @@ router.post('/login_trabajadores', async (req, res) => {
                 } else if (results[0].TIPO_PERSONAS_ID == 2) {
                     res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 3) {
-                    res.sendFile(path.join(__dirname, '../home/recepcionista.html'));
+                    res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 4) {
-                    res.sendFile(path.join(__dirname, '../home/mecanico.html'));
+                    res.sendFile(path.join(__dirname, '../home/mecanico/mecanico.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 5) {
                     res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
                 } else {
@@ -340,6 +367,26 @@ router.get('/api_servicios', async (req, res) => {
 })
 
 
+//Consultar Servicios (API)
+router.get('/api_consultar_estado_servicio', async (req, res) => {
+    pool.query(('SELECT ID , PRECIO , ACTIVO , TIPO_SERVICIO_ID , VEHICULOS_ID FROM SERVICIOS'),async(error,result)=>{
+        var data = [];
+        var subdata = [];
+        for (var i = 0 ; i < result.length ; i++){
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].ID.toString());
+            subdata.push(result[i].ACTIVO.toString());
+
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+    
+})
+
+
 
 
 // SECRETARIO 
@@ -414,6 +461,54 @@ router.get('/api_cliente', async (req, res) => {
         res.send(data);
     })
     
+})
+
+//Recepcion Vehiculo(API)
+router.post('/recepcion_vehiculo', async (req, res) => {
+const id = req.body.id;
+const modelo = req.body.modelo;
+const ano = req.body.ano;
+const descripcion_falla = req.body.descripcion;
+const personas_cedula = req.body.personas_cedula;
+console.log(id);
+console.log(modelo);
+console.log(ano);
+console.log(descripcion_falla);
+console.log(personas_cedula);
+const personas_tipo_personas_id = 6;
+if (id && modelo && ano && descripcion_falla && personas_cedula && personas_tipo_personas_id) {
+    pool.query('SELECT * FROM VEHICULOS AS V, PERSONAS AS P WHERE V.ID = ?', [id]+' V.PERSONAS_CEDULA= P.CEDULA ' , async (error, results) => {
+        if (results.length == 0) {
+            pool.query('INSERT INTO VEHICULOS SET ?', { ID: id, MODELO: modelo, AÑO: ano, DESCRIPCIÓN_FALLA: descripcion_falla, PERSONAS_CEDULA:personas_cedula,PERSONAS_TIPO_PERSONAS_ID: personas_tipo_personas_id }, async (error, results) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    notifier.notify({
+                        title: 'ADVERTENCIA',
+                        message: 'Se ha añadido el vehiculo',
+                        wait:false
+                      });
+                      res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
+                }
+            })
+        } else if (results[0].CEDULA != cedula) {
+            notifier.notify({
+                title: 'ADVERTENCIA',
+                message: 'La cedula no esta registrada',
+                wait:false
+              });
+              res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
+        } 
+         else {
+            notifier.notify({
+                title: 'ADVERTENCIA',
+                message: 'Rellene bien la información',
+                wait:false
+              });
+              res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
+        }
+    })
+}
 })
 
 // Modificar cliente 

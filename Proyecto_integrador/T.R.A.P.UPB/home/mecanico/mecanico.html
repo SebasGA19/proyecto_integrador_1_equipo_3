@@ -35,7 +35,7 @@
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <form action="/login" method="get">
-                        <button>Salir</button>
+                        <button class="btn btn-danger">Salir</button>
                     </form>
                 </div>
             </li>
@@ -47,12 +47,12 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div >-----------------------------------
-                            <form action="/estado_servicio" method="get">
+                            <form action="/mecanico" method="get">
                                 <button class="btn btn-info">Estado del servicio</button>
                             </form>
                         </div>  
                         <div >-----------------------------------
-                            <form action="/entregar_vehiculo" method="get">
+                            <form action="/entrega_vehiculo" method="get">
                                 <button class="btn btn-info">Entrega de vehiculos</button>
                             </form>
                         </div>  
@@ -60,7 +60,47 @@
         </div>
         <div id="layoutSidenav_content">
             <div class="container-fluid">
-                
+                <form action="/entrega_vehiculo" method="POST" class="formulario" id="formulario">
+                    <div class="container-fluid"><h3>Modificar Clientes</h3><br><div class="formulario__grupo" id="grupo__password2">
+                        <select class="form-select" aria-label="Estado" name="tipo">
+                            <option selected>Datos a modificar</option>
+                            <option value="1">Nombre</option>
+                            <option value="2">Apellido</option>
+                            <option value="3">Correo</option>
+                            <option value="4">Dirección</option>
+                        </select>
+                    </div></div>
+                    <!--Cédula-->
+                    <div class="formulario__grupo " id="grupo__cedula">
+    
+                            <label for="usuario" class="formulario__label">Cédula</label>
+                            <div class="formulario__grupo-input">
+    
+                                <input class="formulario__input" type="number" name="cedula" placeholder="cédula">
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            <label for="usuario" class="formulario__label">Dato a cambiar</label>
+                                <input class="formulario__input" type="text" name="cambio" placeholder="dato">
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+    
+                            </div>
+    
+                            <div class="formulario__grupo" id="grupo__password2">
+                                <select class="form-select" aria-label="Estado" name="estado">
+                                    <option selected>Estado Cliente</option>
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
+                            </div>
+    
+                            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                                <button type="click" class="fomulario__btn">Modificar</button>
+                                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
+                                    exitosamente
+                                </p>
+                            </div>
+    
+                </form>
+             
             </div>
         </div>
 
