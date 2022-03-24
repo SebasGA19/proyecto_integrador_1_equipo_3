@@ -46,7 +46,14 @@ router.get('/ver_trabajador', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/consultar_trabajadores.html'));
 })
 
-router.post('/consultar_estado_servicio', (req, res) => {
+router.get('/ver_servicios', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/consultar_estado_servicio.html'));
+})
+
+
+
+
+router.get('/consultar_estado_servicio', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/mecanico/consultar_estado_servicio.html'));
 })
 
@@ -66,16 +73,13 @@ router.get('/cajero', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
 })
 
-//Entrega de vehiculo
-router.post('/entrega_vehiculo', (req, res) => {
-    const id= req.body.cedula;
-   // pool.query((`SELECT ID , VEHICULOS_ID , ACTIVO FROM SERVICIOS AS S, VEHICULOS AS V WHERE S.ACTIVO = 0 AND  '${ id}' = V.ID`),async(error,results)=>{
-        console.log(id);
-         console.log(results)
-        //console.log(data);
-    })
-    
+
 //})
+
+//OTROS
+router.get('/volver', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/mecanico/mecanico.html'));
+})
 
 
 //OTROS
@@ -86,8 +90,8 @@ router.get('/registro_servicios', (req, res) => {
 router.get('/registro_clientes', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
 })
-//Estado del servicio
-router.get('/mecanico', (req, res) => {
+
+router.get('/entrega_vehiculo', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/mecanico/mecanico.html'));
 })
 
@@ -152,6 +156,18 @@ router.post('/login_trabajadores', async (req, res) => {
           res.sendFile(path.join(__dirname, '../home/login.html'));
     }
 })
+
+//Entrega de vehiculo
+router.post('/api_entrega_vehiculo', (req, res) => {
+    const id= req.body.id;
+ //  pool.query(('SELECT ID , VEHICULOS_ID , ACTIVO FROM SERVICIOS AS S, VEHICULOS AS V WHERE S.ACTIVO = 0 AND '+ id +' = V.ID AND S.VEHICULOS_ID=V.ID'),async(error,results)=>{
+    pool.query(`SELECT * ID FROM VEHICULOS AS V, SERVICIOS AS S V WHERE S.ACTIVO=0 AND V.ID='${id}'`, async (error, results) =>{
+    console.log(id);
+        console.log(results.length)
+        //console.log(data);
+    })
+})
+    
 
 // ADMINISTRADOR
 //Registro trabajadores
@@ -369,7 +385,9 @@ router.get('/api_servicios', async (req, res) => {
 
 //Consultar Servicios (API)
 router.get('/api_consultar_estado_servicio', async (req, res) => {
-    pool.query(('SELECT ID , PRECIO , ACTIVO , TIPO_SERVICIO_ID , VEHICULOS_ID FROM SERVICIOS'),async(error,result)=>{
+  
+ console.log(tipo);
+    pool.query(('SELECT ID , ACTIVO FROM SERVICIOS  '),async(error,result)=>{
         var data = [];
         var subdata = [];
         for (var i = 0 ; i < result.length ; i++){
