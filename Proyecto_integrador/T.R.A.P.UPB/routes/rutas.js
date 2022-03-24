@@ -42,6 +42,12 @@ router.get('/ver_trabajador', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/consultar_trabajadores.html'));
 })
 
+//Generar Informe de servicios
+router.get('/generar_informe', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/generar_informe.html'));
+})
+
+
 //OTROS
 router.get('/principal', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
