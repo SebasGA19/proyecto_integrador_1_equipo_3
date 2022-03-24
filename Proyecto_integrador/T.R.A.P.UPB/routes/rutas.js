@@ -160,6 +160,13 @@ router.post('/registro_trabajadores', async (req, res) => {
                   res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
             }
         })
+    }else{
+        notifier.notify({
+            title: 'ADVERTENCIA',
+            message: 'Rellene bien los datos',
+            wait:false
+          });
+          res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
     }
 })
 
