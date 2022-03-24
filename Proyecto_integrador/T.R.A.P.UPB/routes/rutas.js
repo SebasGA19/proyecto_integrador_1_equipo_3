@@ -539,7 +539,7 @@ router.post('/modificar_clientes', async (req, res) => {
                 message: 'La cedula no corresponde a una accesible para este usuario o el cliente no existe ',
                 wait:false
               });
-              res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes'));
+              res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
         } else {
             const tipo = req.body.tipo;
             const dato = req.body.cambio;
@@ -554,7 +554,7 @@ router.post('/modificar_clientes', async (req, res) => {
                             message: 'Se ha actualizado el cliente '+results[0].NOMBRE,
                             wait:false
                           });
-                          res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes'));
+                          res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
                     }
                 });
             } else if (tipo == 2) {
@@ -567,7 +567,7 @@ router.post('/modificar_clientes', async (req, res) => {
                             message: 'Se ha actualizado el cliente '+result[0].NOMBRE,
                             wait:false
                           });
-                          res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes'));
+                          res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
                     }
                 });
             } else if (tipo == 3) {
@@ -580,7 +580,7 @@ router.post('/modificar_clientes', async (req, res) => {
                             message: 'Se ha actualizado el cliente '+result[0].NOMBRE,
                             wait:false
                           });
-                          res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes'));
+                          res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
                     }
                 });
             } else if (tipo == 4) {
@@ -593,7 +593,7 @@ router.post('/modificar_clientes', async (req, res) => {
                             message: 'Se ha actualizado el cliente '+result[0].NOMBRE,
                             wait:false
                           });
-                        res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes'));
+                          res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
                     }
                 });
             } else {
@@ -607,7 +607,7 @@ router.post('/modificar_clientes', async (req, res) => {
                                 message: 'Se ha actualizado el cliente '+result[0].NOMBRE,
                                 wait:false
                               });
-                              res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes'));;
+                              res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
                         }
                     });
                 } else {
@@ -616,7 +616,7 @@ router.post('/modificar_clientes', async (req, res) => {
                         message: 'No se ha aplicado ningún cambio',
                         wait:false
                       });
-                      res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes'));
+                      res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
                 }
             }
         }

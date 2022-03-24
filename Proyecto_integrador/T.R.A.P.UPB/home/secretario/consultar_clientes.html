@@ -3,28 +3,15 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Consultar Clientes</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
-    <script type="text/javascript" src="js/rut.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8"
-        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-
-
-
+    <title>Secretario</title>
+    <script src="js/codequery.js" crossorigin="anonymous"></script>
+    <script src=" js/desplegable.js"></script>
 </head>
 
-<body class="sb-nav-fixed" background="img/admin.jpeg">
+<body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Secretario TRAP</a><button
-            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
-                class="fas fa-bars"></i></button>
+        <a class="navbar-brand" href="">Secretario TRAP</a><button class="btn btn-link btn-sm order-1 order-lg-0"
+            id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
         <!-- Navbar Search-->
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -42,56 +29,71 @@
         </ul>
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
+        <div id="layoutSidenav_nav"layoutSidenav_nav >
+            <nav class="sb-sidenav accordion sb-sidenav-dark m-auto" id="sidenavAccordion">
+                <div class="sb-sidenav-menu" id="sb-sidenav-menu">
                     <div class="nav">
-                        <div >-----------------------------------
-                            <form action="/modificar_clientes">
-                                <button  class="btn btn-info">Modificar Clientes</button>
+                        <div>-----------------------------------
+                            <form action="/registro_clientes">
+                                <button class="btn btn-info">Registro Cientes</button>
                             </form>
                         </div>
-                        <div >----------------------------------
+                        <div>----------------------------------
                             <form action="/ver_clientes" method="get">
                                 <button class="btn btn-info">Ver Clientes</button>
                             </form>
                         </div>
 
-                    
-                        
+                        <div>-----------------------------------
+                            <form action="/modificar_clientes" method="get">
+                                <button class="btn btn-info">Modificar Clientes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </div>
-    </div>
-        <div class="container-fluid">
-            <div class="container-fluid">
+        
+        <div class="row align-items-end">
+            <div class="col-4 align-self-stretch">
                 <table id="example" class="display" width="100%"></table>
             </div>
-
-            <script type="text/javascript">
-                var bd = 'http://localhost:4000/api_cliente';
-                $(document).ready(function () {
-                    $.ajax({
-                        url: bd,
-                        context: document.body
-                    }).done(function (oResultado) {
-
-                        $('#example').DataTable({
-                            data: oResultado,
-                            columns: [
-                                { title: "CEDULA" },
-                                { title: "NOMBRE" },
-                                { title: "APELLIDO" },
-                                { title: "CORREO" },
-                                { title: "DIRECCION" },
-                                { title: "TELEFONO" }
-                            ]
-                        });
-
-                    });
-                });
-            </script>
-
         </div>
+
+        <script type="text/javascript">
+            var bd = 'http://localhost:4000/api_cliente';
+            $(document).ready(function () {
+                $.ajax({
+                    url: bd,
+                    context: document.body
+                }).done(function (oResultado) {
+
+                    $('#example').DataTable({
+                        data: oResultado,
+                        columns: [
+                            { title: "CEDULA" },
+                            { title: "NOMBRE" },
+                            { title: "APELLIDO" },
+                            { title: "CORREO" },
+                            { title: "TELEFONO" },
+                            { title: "DIRECCION" }
+                        ]
+                    });
+
+                });
+            });
+        </script>
+
+
     </div>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/font-awesome.js" crossorigin="anonymous"></script>
+    <script src="js/bootsrap431.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/chart.js" crossorigin="anonymous"></script>
+    <script src="js/jquerydatatable.js" crossorigin="anonymous"></script>
+    <script src="js/bootsraptable110.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/rut.js"></script>
 </body>
+
 </html>
