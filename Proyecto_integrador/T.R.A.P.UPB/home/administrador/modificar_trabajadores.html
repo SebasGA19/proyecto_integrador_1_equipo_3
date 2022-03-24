@@ -11,9 +11,9 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" background="https://fondosmil.com/fondo/9846.jpg" >
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">Secretario TRAP</a><button
+        <a class="navbar-brand" href="index.php">Sistema Web</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -24,7 +24,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <form action="/login" method="get">
-                        <button>Salir</button>
+                        <button class="btn btn-danger">Salir</button>
                     </form>
                 </div>
             </li>
@@ -35,12 +35,30 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                            Modificar Trabajadores
+                        <div >-----------------------------------
+                            <form action="/principal">
+                                <button  class="btn btn-info">Registro Trabajadores</button>
+                            </form>
                         </div>
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
-                            <form action="/ver_clientes" method="get">
-                                <button>Ver Trabajadores</button>
+                        <div >----------------------------------
+                            <form action="/ver_trabajador" method="get">
+                                <button class="btn btn-light">Ver Trabajadores</button>
+                            </form>
+                        </div>
+
+                        <div >-----------------------------------
+                            <form action="/modificar_trabajadores" method="get">
+                                <button class="btn btn-info">Modificar Trabajadores</button>
+                            </form>
+                        </div>
+                        <div >-----------------------------------
+                            <form action="/generar_informe" method="get">
+                                <button class="btn btn-light">Generar Informe Servicios</button>
+                            </form>
+                        </div>
+                        <div >-----------------------------------
+                            <form action="/registro_servicios" method="get">
+                                <button class="btn btn-info">Registro de Servicios</button>
                             </form>
                         </div>
             </nav>

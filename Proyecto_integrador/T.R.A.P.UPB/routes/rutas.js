@@ -32,6 +32,10 @@ router.get('/modificar_clientes', async (req, res) => {
     res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
 })
 
+//Generar Informe de servicios
+router.get('/generar_informe', (req, res) => {
+    res.sendFile(path.join(__dirname,'../home/administrador/generar_informe.html'));
+})
 
 //CONSULTAR
 router.get('/ver_clientes', (req, res) => {
@@ -42,15 +46,22 @@ router.get('/ver_trabajador', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/consultar_trabajadores.html'));
 })
 
-//Generar Informe de servicios
-router.get('/generar_informe', (req, res) => {
-    res.sendFile(path.join(__dirname, '../home/administrador/generar_informe.html'));
-})
 
 
 //OTROS
 router.get('/principal', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
+})
+//OTROS
+router.get('/cajero', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
+})
+
+
+
+//OTROS
+router.get('/registro_servicios', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/registro_servicios.html'));
 })
 
 
@@ -307,6 +318,30 @@ router.get('/api_trabajador', async (req, res) => {
     
 })
 
+//Consultar Servicios (API)
+router.get('/api_servicios', async (req, res) => {
+    pool.query(('SELECT ID , PRECIO , ACTIVO , TIPO_SERVICIO_ID , VEHICULOS_ID FROM SERVICIOS'),async(error,result)=>{
+        var data = [];
+        var subdata = [];
+        for (var i = 0 ; i < result.length ; i++){
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].ID.toString());
+            subdata.push(result[i].PRECIO.toString());
+            subdata.push(result[i].ACTIVO.toString());
+            subdata.push(result[i].TIPO_SERVICIO_ID.toString());
+            subdata.push(result[i].VEHICULOS_ID.toString());
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+    
+})
+
+
+
+
 // SECRETARIO 
 // Registro clientes
 router.post('/registro_clientes', async (req, res) => {
@@ -483,6 +518,10 @@ router.post('/generar_servicio', async (req, res) => {
     const cedula = req.body.cedula;
     const id_vehiculo = req.body.id;
     const precio = req.body.precio;
+    console.log(servicio);
+    console.log(cedula);
+    console.log(id_vehiculo);
+    console.log(precio);
     if (cedula && servicio && precio && id_vehiculo) {
         pool.query((`SELECT * FROM PERSONAS AS P , VEHICULOS AS V , TIPO_SERVICIO AS T WHERE V.PERSONAS_CEDULA = P.CEDULA AND P.CEDULA = '${cedula}' AND V.ID = '${id_vehiculo}' AND P.TIPO_PERSONAS_ID = 6 AND T.ID = '${servicio}'`), async (err, result) => {
             if (err) {

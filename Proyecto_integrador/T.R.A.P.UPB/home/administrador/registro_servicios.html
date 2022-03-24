@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -69,9 +69,12 @@
         <main>
             <div class="container-fluid">
 
-                <form action="/registro_trabajadores" method="POST" class="formulario" id="formulario">
+            
 
-                    <h3>Formulario registro</h3>
+
+                <form action="/generar_servicio" method="POST" class="formulario" id="formulario">
+
+                    <h3>Formulario Registro Servicios</h3>
 
                     <!--Grupo Cédula-->
                <!--Grupo Cédula-->
@@ -86,104 +89,39 @@
             <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
         </div>
 
-                    <!--Grupo primer nombre-->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <label for="nombre1" class="formulario__label">Nombre</label>
+                    <!--Grupo Servicio-->
+                    <div class="formulario__grupo" id="grupo__servicio">
+                        <label for="servicio" class="formulario__label">Servicio</label>
                         <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="text" name="nombre" placeholder="Nombre">
+                            <input class="formulario__input" type="text" name="servicio" placeholder="Servicio">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">Nombre no valido, solo puede contener letras</p>
+                        <p class="formulario__input-error">Servicio no valido, solo puede contener letras</p>
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>
-
-                    <!--Grupo apellido-->
-                    <div class="formulario__grupo" id="grupo__apellido">
-                        <label for="nombre2" class="formulario__label">Apellido</label>
+                    <!--Grupo Id-->
+                    <div class="formulario__grupo" id="grupo__id">
+                        <label for="Id" class="formulario__label">Id</label>
                         <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="text" name="apellido" placeholder="apellido">
+                            <input class="formulario__input" type="number" name="id" placeholder="412">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">Nombre no valido, solo puede contener letras</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo correo-->
-                    <div class="formulario__grupo" id="grupo__correo">
-                        <label for="correo" class="formulario__label">Correo electrónico</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="email" name="correo" placeholder="correo@correo.com">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Correo no valido</p>
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo telefono-->
-                    <div class="formulario__grupo" id="grupo__telefono">
-                        <label for="telefono" class="formulario__label">Teléfono</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="number" name="telefono" placeholder="4551566800">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">El teléfono solo puede contener números y el máximo son 10
+                        <p class="formulario__input-error">La id solo puede contener números y el máximo son 10
                             dígitos</p>
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>
-
-
-
-                    <!--Grupo direccion -->
-                    <div class="formulario__grupo" id="grupo__direccion">
-                        <label for="nombre2" class="formulario__label">Dirección</label>
+                    <!--Grupo Precio-->
+                    <div class="formulario__grupo" id="grupo__precio">
+                        <label for="Id" class="formulario__label">Precio</label>
                         <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="text" name="direccion" placeholder="direccion">
+                            <input class="formulario__input" type="number" name="precio" placeholder="412">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">Direccion no valida</p>
+                        <p class="formulario__input-error">El precio solo puede contener números </p>
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo contraseña 1-->
-                    <div class="formulario__grupo" id="grupo__password">
-                        <label for="password" class="formulario__label">Contraseña</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="password" name="password">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">La contraseña debe ser de 4 a 12 dígitos</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
-
-                    <!--Grupo contraseña 2-->
-                    <div class="formulario__grupo" id="grupo__password2">
-                        <label for="password2" class="formulario__label">Verificar contraseña</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="password" name="password2" id="password2">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Las contraseñas no coinciden</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                        <select class="form-select" aria-label="Tipo" name="tipo">
-                            <option selected>Tipo de persona</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Secretario</option>
-                            <option value="3">Recepcionista</option>
-                            <option value="4">Mecanico</option>
-                            <option value="5">Cajero</option>
-                        </select>
-
-                        <select class="form-select" aria-label="Estado" name="estado">
-                            <option selected>Estado</option>
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
-                        </select>
                     </div>
 
                     <div>
