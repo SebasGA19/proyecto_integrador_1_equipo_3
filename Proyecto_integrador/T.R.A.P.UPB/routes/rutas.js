@@ -34,7 +34,7 @@ router.get('/modificar_clientes', async (req, res) => {
 
 //Generar Informe de servicios
 router.get('/generar_informe', (req, res) => {
-    res.sendFile(path.join(__dirname,'../home/administrador/generar_informe.html'));
+    res.sendFile(path.join(__dirname, '../home/administrador/generar_informe.html'));
 })
 
 //CONSULTAR
@@ -74,7 +74,7 @@ router.get('/cajero', (req, res) => {
 })
 
 
-//})
+
 
 //OTROS
 router.get('/volver', (req, res) => {
@@ -82,7 +82,6 @@ router.get('/volver', (req, res) => {
 })
 
 
-//OTROS
 router.get('/registro_servicios', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/administrador/registro_servicios.html'));
 })
@@ -112,16 +111,16 @@ router.post('/login_trabajadores', async (req, res) => {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'No se encontro el correo deseado',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/login.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/login.html'));
             } else if (results[0].CONTRASEÑA != password) {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'Contraseña incorrecta',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/login.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/login.html'));
             } else {
                 //console.log("Bienvenido", results[0].NOMBRE);
                 des = true;
@@ -141,33 +140,33 @@ router.post('/login_trabajadores', async (req, res) => {
                     notifier.notify({
                         title: 'ADVERTENCIA',
                         message: 'No esta asignado , vuelva pronto',
-                        wait:false
-                      });
-                      res.sendFile(path.join(__dirname, '../home/login.html'));
+                        wait: false
+                    });
+                    res.sendFile(path.join(__dirname, '../home/login.html'));
                 }
             }
         })
-    }else{
+    } else {
         notifier.notify({
             title: 'ADVERTENCIA',
             message: 'Rellene los datos deseados',
-            wait:false
-          });
-          res.sendFile(path.join(__dirname, '../home/login.html'));
+            wait: false
+        });
+        res.sendFile(path.join(__dirname, '../home/login.html'));
     }
 })
 
 //Entrega de vehiculo
 router.post('/api_entrega_vehiculo', (req, res) => {
-    const id= req.body.id;
- //  pool.query(('SELECT ID , VEHICULOS_ID , ACTIVO FROM SERVICIOS AS S, VEHICULOS AS V WHERE S.ACTIVO = 0 AND '+ id +' = V.ID AND S.VEHICULOS_ID=V.ID'),async(error,results)=>{
-    pool.query(`SELECT * ID FROM VEHICULOS AS V, SERVICIOS AS S V WHERE S.ACTIVO=0 AND V.ID='${id}'`, async (error, results) =>{
-    console.log(id);
+    const id = req.body.id;
+    //  pool.query(('SELECT ID , VEHICULOS_ID , ACTIVO FROM SERVICIOS AS S, VEHICULOS AS V WHERE S.ACTIVO = 0 AND '+ id +' = V.ID AND S.VEHICULOS_ID=V.ID'),async(error,results)=>{
+    pool.query(`SELECT * ID FROM VEHICULOS AS V, SERVICIOS AS S V WHERE S.ACTIVO=0 AND V.ID='${id}'`, async (error, results) => {
+        console.log(id);
         console.log(results.length)
         //console.log(data);
     })
 })
-    
+
 
 // ADMINISTRADOR
 //Registro trabajadores
@@ -192,41 +191,41 @@ router.post('/registro_trabajadores', async (req, res) => {
                         notifier.notify({
                             title: 'ADVERTENCIA',
                             message: 'Se ha añadido el trabajador',
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
                     }
                 })
             } else if (results[0].CEDULA == cedula) {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'La cedula ya esta registrada',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
             } else if (results[0].TELEFONO == telefono) {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'El telefono ya esta registrado',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
             } else {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'El correo ya esta registrado',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
             }
         })
-    }else{
+    } else {
         notifier.notify({
             title: 'ADVERTENCIA',
             message: 'Rellene bien los datos',
-            wait:false
-          });
-          res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
+            wait: false
+        });
+        res.sendFile(path.join(__dirname, '../home/administrador/principal.html'));
     }
 })
 
@@ -238,9 +237,9 @@ router.post('/modificar_trabajadores', async (req, res) => {
             notifier.notify({
                 title: 'ADVERTENCIA',
                 message: 'Cedula no registrada o no tiene permiso pa modificar este usuario',
-                wait:false
-              });
-              res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+                wait: false
+            });
+            res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
         } else {
             const tipo = req.body.tipo;
             const dato = req.body.cambio;
@@ -252,10 +251,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  results[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+                            message: 'Se ha modificado el usuario ' + results[0].NOMBRE,
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else if (tipo == 2) {
@@ -265,10 +264,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  results[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+                            message: 'Se ha modificado el usuario ' + results[0].NOMBRE,
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else if (tipo == 3) {
@@ -278,10 +277,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  results[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+                            message: 'Se ha modificado el usuario ' + results[0].NOMBRE,
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else if (tipo == 4) {
@@ -291,10 +290,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
                     } else {
                         notifier.notify({
                             title: 'ADVERTENCIA',
-                            message: 'Se ha modificado el usuario ' +  results[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+                            message: 'Se ha modificado el usuario ' + results[0].NOMBRE,
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else if (tipo == 5) {
@@ -305,9 +304,9 @@ router.post('/modificar_trabajadores', async (req, res) => {
                         notifier.notify({
                             title: 'ADVERTENCIA',
                             message: 'Se ha modificado el usuario ' + results[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                     }
                 });
             } else {
@@ -318,19 +317,19 @@ router.post('/modificar_trabajadores', async (req, res) => {
                         } else {
                             notifier.notify({
                                 title: 'ADVERTENCIA',
-                                message: 'Se ha actualizado la actividad del usuario ' +  results[0].NOMBRE,
-                                wait:false
-                              });
-                              res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+                                message: 'Se ha actualizado la actividad del usuario ' + results[0].NOMBRE,
+                                wait: false
+                            });
+                            res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                         }
                     });
                 } else {
                     notifier.notify({
                         title: 'ADVERTENCIA',
                         message: 'No se ha aplicado ningún cambio',
-                        wait:false
-                      });
-                      res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
+                        wait: false
+                    });
+                    res.sendFile(path.join(__dirname, '../home/administrador/modificar_trabajadores.html'));
                 }
             }
         }
@@ -340,10 +339,10 @@ router.post('/modificar_trabajadores', async (req, res) => {
 
 //Consultar Trabajadores (API)
 router.get('/api_trabajador', async (req, res) => {
-    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID != 6'),async(error,result)=>{
+    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID != 6'), async (error, result) => {
         var data = [];
         var subdata = [];
-        for (var i = 0 ; i < result.length ; i++){
+        for (var i = 0; i < result.length; i++) {
             aux = []
             subdata = aux;
             subdata.push(result[i].CEDULA.toString());
@@ -358,15 +357,15 @@ router.get('/api_trabajador', async (req, res) => {
         //console.log(data);
         res.send(data);
     })
-    
+
 })
 
 //Consultar Servicios (API)
 router.get('/api_servicios', async (req, res) => {
-    pool.query(('SELECT ID , PRECIO , ACTIVO , TIPO_SERVICIO_ID , VEHICULOS_ID FROM SERVICIOS'),async(error,result)=>{
+    pool.query(('SELECT ID , PRECIO , ACTIVO , TIPO_SERVICIO_ID , VEHICULOS_ID FROM SERVICIOS'), async (error, result) => {
         var data = [];
         var subdata = [];
-        for (var i = 0 ; i < result.length ; i++){
+        for (var i = 0; i < result.length; i++) {
             aux = []
             subdata = aux;
             subdata.push(result[i].ID.toString());
@@ -379,18 +378,18 @@ router.get('/api_servicios', async (req, res) => {
         //console.log(data);
         res.send(data);
     })
-    
+
 })
 
 
 //Consultar Servicios (API)
 router.get('/api_consultar_estado_servicio', async (req, res) => {
-  
- console.log(tipo);
-    pool.query(('SELECT ID , ACTIVO FROM SERVICIOS  '),async(error,result)=>{
+
+    console.log(tipo);
+    pool.query(('SELECT ID , ACTIVO FROM SERVICIOS  '), async (error, result) => {
         var data = [];
         var subdata = [];
-        for (var i = 0 ; i < result.length ; i++){
+        for (var i = 0; i < result.length; i++) {
             aux = []
             subdata = aux;
             subdata.push(result[i].ID.toString());
@@ -401,7 +400,7 @@ router.get('/api_consultar_estado_servicio', async (req, res) => {
         //console.log(data);
         res.send(data);
     })
-    
+
 })
 
 
@@ -428,43 +427,50 @@ router.post('/registro_clientes', async (req, res) => {
                         notifier.notify({
                             title: 'ADVERTENCIA',
                             message: 'Se ha añadido el cliente',
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
                     }
                 })
             } else if (results[0].CEDULA == cedula) {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'La cedula ya esta registrada',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
             } else if (results[0].TELEFONO == telefono) {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'El telefono ya se encuentra registrado',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
             } else {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'Rellene bien la información',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
             }
         })
+    }else{
+        notifier.notify({
+            title: 'ADVERTENCIA',
+            message: 'Rellene bien la información',
+            wait: false
+        });
+        res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
     }
 })
 
 //Consultar Clientes (API)
 router.get('/api_cliente', async (req, res) => {
-    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6'),async(error,result)=>{
+    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID = 6'), async (error, result) => {
         var data = [];
         var subdata = [];
-        for (var i = 0 ; i < result.length ; i++){
+        for (var i = 0; i < result.length; i++) {
             aux = []
             subdata = aux;
             subdata.push(result[i].CEDULA.toString());
@@ -478,55 +484,55 @@ router.get('/api_cliente', async (req, res) => {
         //console.log(data);
         res.send(data);
     })
-    
+
 })
 
 //Recepcion Vehiculo(API)
 router.post('/recepcion_vehiculo', async (req, res) => {
-const id = req.body.id;
-const modelo = req.body.modelo;
-const ano = req.body.ano;
-const descripcion_falla = req.body.descripcion;
-const personas_cedula = req.body.personas_cedula;
-console.log(id);
-console.log(modelo);
-console.log(ano);
-console.log(descripcion_falla);
-console.log(personas_cedula);
-const personas_tipo_personas_id = 6;
-if (id && modelo && ano && descripcion_falla && personas_cedula && personas_tipo_personas_id) {
-    pool.query('SELECT * FROM VEHICULOS AS V, PERSONAS AS P WHERE V.ID = ?', [id]+' V.PERSONAS_CEDULA= P.CEDULA ' , async (error, results) => {
-        if (results.length == 0) {
-            pool.query('INSERT INTO VEHICULOS SET ?', { ID: id, MODELO: modelo, AÑO: ano, DESCRIPCIÓN_FALLA: descripcion_falla, PERSONAS_CEDULA:personas_cedula,PERSONAS_TIPO_PERSONAS_ID: personas_tipo_personas_id }, async (error, results) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    notifier.notify({
-                        title: 'ADVERTENCIA',
-                        message: 'Se ha añadido el vehiculo',
-                        wait:false
-                      });
-                      res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
-                }
-            })
-        } else if (results[0].CEDULA != cedula) {
-            notifier.notify({
-                title: 'ADVERTENCIA',
-                message: 'La cedula no esta registrada',
-                wait:false
-              });
-              res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
-        } 
-         else {
-            notifier.notify({
-                title: 'ADVERTENCIA',
-                message: 'Rellene bien la información',
-                wait:false
-              });
-              res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
-        }
-    })
-}
+    const id = req.body.id;
+    const modelo = req.body.modelo;
+    const ano = req.body.ano;
+    const descripcion_falla = req.body.descripcion;
+    const personas_cedula = req.body.personas_cedula;
+    console.log(id);
+    console.log(modelo);
+    console.log(ano);
+    console.log(descripcion_falla);
+    console.log(personas_cedula);
+    const personas_tipo_personas_id = 6;
+    if (id && modelo && ano && descripcion_falla && personas_cedula && personas_tipo_personas_id) {
+        pool.query('SELECT * FROM VEHICULOS AS V, PERSONAS AS P WHERE V.ID = ?', [id] + ' V.PERSONAS_CEDULA= P.CEDULA ', async (error, results) => {
+            if (results.length == 0) {
+                pool.query('INSERT INTO VEHICULOS SET ?', { ID: id, MODELO: modelo, AÑO: ano, DESCRIPCIÓN_FALLA: descripcion_falla, PERSONAS_CEDULA: personas_cedula, PERSONAS_TIPO_PERSONAS_ID: personas_tipo_personas_id }, async (error, results) => {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        notifier.notify({
+                            title: 'ADVERTENCIA',
+                            message: 'Se ha añadido el vehiculo',
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
+                    }
+                })
+            } else if (results[0].CEDULA != cedula) {
+                notifier.notify({
+                    title: 'ADVERTENCIA',
+                    message: 'La cedula no esta registrada',
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
+            }
+            else {
+                notifier.notify({
+                    title: 'ADVERTENCIA',
+                    message: 'Rellene bien la información',
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
+            }
+        })
+    }
 })
 
 // Modificar cliente 
@@ -537,89 +543,98 @@ router.post('/modificar_clientes', async (req, res) => {
             notifier.notify({
                 title: 'ADVERTENCIA',
                 message: 'La cedula no corresponde a una accesible para este usuario o el cliente no existe ',
-                wait:false
-              });
-              res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
+                wait: false
+            });
+            res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
         } else {
             const tipo = req.body.tipo;
             const dato = req.body.cambio;
             const estado = req.body.estado;
-            if (tipo == 1) {
-                pool.query((`UPDATE PERSONAS SET NOMBRE = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        notifier.notify({
-                            title: 'ADVERTENCIA',
-                            message: 'Se ha actualizado el cliente '+results[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
-                    }
-                });
-            } else if (tipo == 2) {
-                pool.query((`UPDATE PERSONAS SET APELLIDO = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        notifier.notify({
-                            title: 'ADVERTENCIA',
-                            message: 'Se ha actualizado el cliente '+result[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
-                    }
-                });
-            } else if (tipo == 3) {
-                pool.query((`UPDATE PERSONAS SET CORREO = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        notifier.notify({
-                            title: 'ADVERTENCIA',
-                            message: 'Se ha actualizado el cliente '+result[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
-                    }
-                });
-            } else if (tipo == 4) {
-                pool.query((`UPDATE PERSONAS SET DIRECCION = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        notifier.notify({
-                            title: 'ADVERTENCIA',
-                            message: 'Se ha actualizado el cliente '+result[0].NOMBRE,
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
-                    }
-                });
-            } else {
-                if (estado == 1 || estado == 0) {
-                    pool.query((`UPDATE PERSONAS SET ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+            if (tipo && dato && estado) {
+                if (tipo == 1) {
+                    pool.query((`UPDATE PERSONAS SET NOMBRE = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
                         if (err) {
                             console.log(err);
                         } else {
                             notifier.notify({
                                 title: 'ADVERTENCIA',
-                                message: 'Se ha actualizado el cliente '+result[0].NOMBRE,
-                                wait:false
-                              });
-                              res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
+                                message: 'Se ha actualizado el cliente ' + results[0].NOMBRE,
+                                wait: false
+                            });
+                            res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
+                        }
+                    });
+                } else if (tipo == 2) {
+                    pool.query((`UPDATE PERSONAS SET APELLIDO = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            notifier.notify({
+                                title: 'ADVERTENCIA',
+                                message: 'Se ha actualizado el cliente ' + results[0].NOMBRE,
+                                wait: false
+                            });
+                            res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
+                        }
+                    });
+                } else if (tipo == 3) {
+                    pool.query((`UPDATE PERSONAS SET CORREO = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            notifier.notify({
+                                title: 'ADVERTENCIA',
+                                message: 'Se ha actualizado el cliente ' + results[0].NOMBRE,
+                                wait: false
+                            });
+                            res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
+                        }
+                    });
+                } else if (tipo == 4) {
+                    pool.query((`UPDATE PERSONAS SET DIRECCION = '${dato}' , ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            notifier.notify({
+                                title: 'ADVERTENCIA',
+                                message: 'Se ha actualizado el cliente ' + results[0].NOMBRE,
+                                wait: false
+                            });
+                            res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
                         }
                     });
                 } else {
-                    notifier.notify({
-                        title: 'ADVERTENCIA',
-                        message: 'No se ha aplicado ningún cambio',
-                        wait:false
-                      });
-                      res.sendFile(path.join(__dirname,'../home/secretario/modificar_clientes.html'));
+                    if (estado == 1 || estado == 0) {
+                        pool.query((`UPDATE PERSONAS SET ESTADO_PERSONA = ` + [estado] + ` WHERE CEDULA = '${[results[0].CEDULA]}'`), async (err, result) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                notifier.notify({
+                                    title: 'ADVERTENCIA',
+                                    message: 'Se ha actualizado el cliente ' + results[0].NOMBRE,
+                                    wait: false
+                                });
+                                res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
+                            }
+                        });
+                    } else {
+                        notifier.notify({
+                            title: 'ADVERTENCIA',
+                            message: 'No se ha aplicado ningún cambio',
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
+                    }
                 }
+            }else{
+                notifier.notify({
+                    title: 'ADVERTENCIA',
+                    message: 'Rellene todos los datos',
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/secretario/modificar_clientes.html'));
             }
-        }
+        }  
     });
 })
 
@@ -643,9 +658,9 @@ router.post('/generar_servicio', async (req, res) => {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'No existe este usuario o el cliente no tiene vehiculo ',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
             } else {
                 pool.query((`INSERT INTO SERVICIOS (PRECIO,ACTIVO,TIPO_SERVICIO_ID,VEHICULOS_ID) VALUES (${precio},1,${servicio},${id_vehiculo})`), async (error, resultados) => {
                     if (error) {
@@ -654,9 +669,9 @@ router.post('/generar_servicio', async (req, res) => {
                         notifier.notify({
                             title: 'ADVERTENCIA',
                             message: 'Se ha agregado el servicio ',
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
                     }
                 })
             }
@@ -665,9 +680,9 @@ router.post('/generar_servicio', async (req, res) => {
         notifier.notify({
             title: 'ADVERTENCIA',
             message: 'Rellene bien la información ',
-            wait:false
-          });
-          res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
+            wait: false
+        });
+        res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
     }
 })
 
@@ -681,9 +696,9 @@ router.post('/generar_factura', async (req, res) => {
                 notifier.notify({
                     title: 'ADVERTENCIA',
                     message: 'No hay ningún usuario o el mismo no ha comprado ningún servicio ',
-                    wait:false
-                  });
-                  res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
             } else {
                 const nombre = result[0].NOMBRES;
                 const precio = result[0].PRECIO;
@@ -692,9 +707,9 @@ router.post('/generar_factura', async (req, res) => {
                         notifier.notify({
                             title: 'ADVERTENCIA',
                             message: 'Se han facturado los servicios ',
-                            wait:false
-                          });
-                          res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
+                            wait: false
+                        });
+                        res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
                     })
                 })
             }
@@ -703,9 +718,9 @@ router.post('/generar_factura', async (req, res) => {
         notifier.notify({
             title: 'ADVERTENCIA',
             message: 'Datos incompletos ',
-            wait:false
-          });
-          res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
+            wait: false
+        });
+        res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
     }
 })
 

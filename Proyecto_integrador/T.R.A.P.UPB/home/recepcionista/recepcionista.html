@@ -2,19 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Sistema Web</title>
-    <link href="css/styles.css" rel="stylesheet" />
+    <title>Home</title>
+    <script src="js/codequery.js" crossorigin="anonymous"></script>
 
-    <script src="js/font-awesome.js"
-        crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed" background="img/admin.jpeg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Sistema Web</a><button
+        <a class="navbar-brand" href="/recepcion">Recepcionista</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -34,9 +28,9 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div >-----------------------------------
+                        <div ><br>
                             <form action="/recepcion">
-                                <button  class="btn btn-info">Recepcion de vehiculos</button>
+                                <button  class="btn btn-info" style="width: 5cm;">Recepcion de vehiculos</button>
                             </form>
                         </div>
             
@@ -49,7 +43,7 @@
 
                 <form action="/recepcion_vehiculo" method="POST" class="formulario" id="formulario">
 
-                    <h3>Formulario Registro Servicios</h3>
+                    <h3>Recepción de vehiculos</h3>
 
                     <!--Grupo Cédula-->
                <!--Grupo Cédula-->
@@ -136,13 +130,14 @@
 
     </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/font-awesome.js" crossorigin="anonymous"></script>
+    <script src="js/bootsrap431.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="js/chart.js" crossorigin="anonymous"></script>
+    <script src="js/jquerydatatable.js" crossorigin="anonymous"></script>
+    <script src="js/bootsraptable110.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/rut.js"></script>
 </body>
 
 </html>

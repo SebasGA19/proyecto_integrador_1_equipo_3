@@ -3,14 +3,13 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Secretario</title>
+    <title>Consulta</title>
     <script src="js/codequery.js" crossorigin="anonymous"></script>
-    <script src=" js/desplegable.js"></script>
 </head>
 
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" background="img/admin.jpeg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Secretario TRAP</a><button class="btn btn-link btn-sm order-1 order-lg-0"
+        <a class="navbar-brand" href="/registro_clientes">Secretario TRAP</a><button class="btn btn-link btn-sm order-1 order-lg-0"
             id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
         <!-- Navbar Search-->
@@ -29,37 +28,44 @@
         </ul>
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav"layoutSidenav_nav >
+        <div id="layoutSidenav_nav" layoutSidenav_nav>
             <nav class="sb-sidenav accordion sb-sidenav-dark m-auto" id="sidenavAccordion">
                 <div class="sb-sidenav-menu" id="sb-sidenav-menu">
                     <div class="nav">
-                        <div>-----------------------------------
+                        <br>
+                        <div>
                             <form action="/registro_clientes">
-                                <button class="btn btn-info">Registro Cientes</button>
+                                <button class="btn btn-info" style="width: 5cm;">Registro Cientes</button>
                             </form>
                         </div>
-                        <div>----------------------------------
+                        <br>
+                        <div>
                             <form action="/ver_clientes" method="get">
-                                <button class="btn btn-info">Ver Clientes</button>
+                                <button class="btn btn-info" style="width: 5cm;"> Ver Clientes</button>
                             </form>
                         </div>
 
-                        <div>-----------------------------------
+
+                        <br>
+                        <div>
                             <form action="/modificar_clientes" method="get">
-                                <button class="btn btn-info">Modificar Clientes</button>
+                                <button class="btn btn-info" style="width: 5cm;">Modificar Clientes</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
-        
-        <div class="row align-items-end">
-            <div class="col-4 align-self-stretch">
-                <table id="example" class="display" width="100%"></table>
-            </div>
         </div>
 
+
+        <div class="col-md-12" >
+            <br>
+            <br>
+            <br>
+            <table id="example" class="display" style="margin:auto; width: 70%;" ></table>
+        </div>
+    
         <script type="text/javascript">
             var bd = 'http://localhost:4000/api_cliente';
             $(document).ready(function () {
