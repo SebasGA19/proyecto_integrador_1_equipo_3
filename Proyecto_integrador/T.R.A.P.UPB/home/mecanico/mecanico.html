@@ -2,37 +2,24 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Sistema Web</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="css/styles.css" rel="stylesheet" />
-  
-        crossorigin="anonymous" />
-    <script src="js/font-awesome.js"
-        crossorigin="anonymous"></script>
+    <title>Home</title>
+    <script src="js/codequery.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="sb-nav-fixed" background="img/admin.jpeg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="login.html">Sistema Web</a><button class="btn btn-link btn-sm order-1 order-lg-0"
-            id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button><!-- Navbar Search-->
-        <!--<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-				<div class="input-group-append">
-				<button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-				</div>
-                </div>
-			</form>-->
-        <!-- Navbar-->
+        <a class="navbar-brand" href="/entrega_vehiculo">Mecanico</a><button
+            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
+
+        <!-- Navbar Search-->
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <form action="/login" method="get">
                         <button class="btn btn-danger">Salir</button>
@@ -47,13 +34,23 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav"> 
                         <div >-----------------------------------
-                            <form action="/consultar_estado_servicio" method="get">
-                                <button class="btn btn-info">Estado del servicio</button>
+                    <div class="nav">
+                        <div ><hr>
+                            <form action="/entrega_vehiculo" method="get">
+                                <button class="btn btn-info" style="width: 5cm;">Entrega de vehiculos</button>
                             </form>
                         </div>  
                        
+                       
+                        <div ><hr>
+                            <form action="/consultar_estado_servicio" method="get">
+                                <button class="btn btn-info" style="width: 5cm;">Estado del servicio</button>
+                            </form>
+                        </div>  
+                        
             </nav>
         </div>
+    </div>
         <div id="layoutSidenav_content">
             <div class="container-fluid">
                 <form action="/api_entrega_vehiculo" method="POST" class="formulario" id="formulario">
@@ -85,22 +82,14 @@
                     </div>
                     
                     </div>
-
-                    
-
                 </form>   
              
             </div>
            
             </div>
         </div>
-
-
-
-
-
-
     </div>
+
     <script src="js/codequery.js" crossorigin="anonymous"></script>
     <script src="js/bootsrap431.js"
         crossorigin="anonymous"></script>
@@ -111,6 +100,16 @@
     <script src="js/jquerydatatable.js" crossorigin="anonymous"></script>
     <script src="js/bootsraptable110.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/font-awesome.js" crossorigin="anonymous"></script>
+    <script src="js/bootsrap431.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/chart.js" crossorigin="anonymous"></script>
+    <script src="js/jquerydatatable.js" crossorigin="anonymous"></script>
+    <script src="js/bootsraptable110.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/rut.js"></script>
+
 </body>
 
 </html>

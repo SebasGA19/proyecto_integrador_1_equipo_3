@@ -4,15 +4,13 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Cajero</title>
-	<link href="css/styles.css" rel="stylesheet" />
-	<script src="js/font-awesome.js"
-		crossorigin="anonymous"></script>
+	<title>Facturar</title>
+	<script src="js/codequery.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed" background="img/admin.jpeg">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="login.html">Sistema Web</a><button class="btn btn-link btn-sm order-1 order-lg-0"
+		<a class="navbar-brand" href="/cajero">Cajero</a><button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 		<!-- Navbar Search-->
 		<ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -32,14 +30,14 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div >-----------------------------------
+                        <div ><hr>
                             <form action="/cajero">
-                                <button  class="btn btn-info">Registrar Factura</button>
+                                <button  class="btn btn-info" style="width: 5cm;">Registrar Factura</button>
                             </form>
                         </div>
-                        <div >----------------------------------
+                        <div ><hr>
                             <form action="/ver_factura" method="get">
-                                <button class="btn btn-info">Ver Factura</button>
+                                <button class="btn btn-info" style="width: 5cm;">Ver Factura</button>
                             </form>
                         </div>                     
             </nav>
@@ -47,10 +45,13 @@
     </div>
 		<div id="layoutSidenav_content">
 			<div class="container-fluid">
-				<form action="/generar_factura" method="POST" class="formulario" id="formulario">
-					<div>
+				<form action="/generar_factura" method="POST" class="formulario" id="formulario" style="width: 30%;">
+					
 						<h3 style="text-align: center;">Formulario de generar factura</h3>
+						
 						<div>
+
+						</div>
 							<div class="formulario__grupo-input">
 								<label for="cedula" class="formulario__label">Cédula</label>
 								<input class="formulario__input" type="number" name="cedula" id="cedula"
@@ -58,27 +59,29 @@
 								<i class="formulario__validacion-estado fas fa-times-circle"></i>
 							</div>
 
+						
 							<div class="formulario__grupo-input">
 								<label for="cedula" class="formulario__label">ID Vehiculo</label>
 								<input class="formulario__input" type="number" name="id" id="id" placeholder="Cédula">
 								<i class="formulario__validacion-estado fas fa-times-circle"></i>
 							</div>
+							
+
 							<button type="click" class="fomulario__btn">Facturar</button>
-						</div>
-					</div>
+					
 
 				</form>
-				<script type="text/javascript" src="js/rut.js"></script>
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/styles.css">
+    <script src="js/font-awesome.js" crossorigin="anonymous"></script>
+    <script src="js/bootsrap431.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/chart.js" crossorigin="anonymous"></script>
+    <script src="js/jquerydatatable.js" crossorigin="anonymous"></script>
+    <script src="js/bootsraptable110.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/rut.js"></script>
 </body>
 
 </html>

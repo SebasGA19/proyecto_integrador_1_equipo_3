@@ -3,17 +3,16 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Secretario</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/font-awesome.js"
-        crossorigin="anonymous"></script>
+    <title>Modificar Trabajadores</title>
+    <script src="js/codequery.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed" background="img/admin.jpeg" >
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Sistema Web</a><button
-            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
-                class="fas fa-bars"></i></button>
+        <a class="navbar-brand" href="/principal">Administrador</a><button class="btn btn-link btn-sm order-1 order-lg-0"
+            id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+
+        <!-- Navbar Search-->
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
@@ -33,38 +32,40 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div >-----------------------------------
+                        <div><br>
                             <form action="/principal">
-                                <button  class="btn btn-info">Registro Trabajadores</button>
+                                <button class="btn btn-info" style="width: 5cm;">Registro Trabajadores</button>
                             </form>
                         </div>
-                        <div >----------------------------------
+                        <div><br>
                             <form action="/ver_trabajador" method="get">
-                                <button class="btn btn-light">Ver Trabajadores</button>
+                                <button class="btn btn-info" style="width: 5cm;">Ver Trabajadores</button>
                             </form>
                         </div>
 
-                        <div >-----------------------------------
+                        <div><br>
                             <form action="/modificar_trabajadores" method="get">
-                                <button class="btn btn-info">Modificar Trabajadores</button>
+                                <button class="btn btn-info" style="width: 5cm;">Modificar Trabajadores</button>
                             </form>
                         </div>
-                        <div >-----------------------------------
+                        <div><br>
                             <form action="/generar_informe" method="get">
-                                <button class="btn btn-light">Generar Informe Servicios</button>
+                                <button class="btn btn-info" style="width: 5cm;">Generar Informe Servicios</button>
                             </form>
                         </div>
-                        <div >-----------------------------------
+                        <div><br>
                             <form action="/registro_servicios" method="get">
-                                <button class="btn btn-info">Registro de Servicios</button>
+                                <button class="btn btn-info" style="width: 5cm;">Registro de Servicios</button>
                             </form>
                         </div>
+
             </nav>
         </div>
+    </div>
         <div class="container-fluid">
             <form action="/modificar_trabajadores" method="POST" class="formulario" id="formulario">
                 <div class="container-fluid"><h3>Modificar Trabajadores</h3><br><div class="formulario__grupo" id="grupo__password2">
-                    <select class="form-select" aria-label="Estado" name="tipo">
+                    <select class="form-select" aria-label="Estado" name="tipo" style="width: 70%;">
                         <option selected>Datos a modificar</option>
                         <option value="1">Nombre</option>
                         <option value="2">Apellido</option>
@@ -72,6 +73,16 @@
                         <option value="4">Dirección</option>
                         <option value="5">Contraseña </option>
                     </select>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="formulario__grupo" id="grupo__password2">
+                        <select class="form-select" aria-label="Estado" name="estado" style="width: 70%;">
+                            <option selected>Estado Trabajadores</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
                 </div></div>
                 <!--Cédula-->
                 <div class="formulario__grupo " id="grupo__cedula">
@@ -87,14 +98,6 @@
 
                         </div>
 
-                        <div class="formulario__grupo" id="grupo__password2">
-                            <select class="form-select" aria-label="Estado" name="estado">
-                                <option selected>Estado Trabajadores</option>
-                                <option value="1">Activo</option>
-                                <option value="0">Inactivo</option>
-                            </select>
-                        </div>
-
                         <div class="formulario__grupo formulario__grupo-btn-enviar">
                             <button type="click" class="fomulario__btn">Modificar</button>
                             <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
@@ -105,13 +108,14 @@
             </form>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/font-awesome.js" crossorigin="anonymous"></script>
+    <script src="js/bootsrap431.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="js/chart.js" crossorigin="anonymous"></script>
+    <script src="js/jquerydatatable.js" crossorigin="anonymous"></script>
+    <script src="js/bootsraptable110.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/rut.js"></script>
 </body>
 
 </html>

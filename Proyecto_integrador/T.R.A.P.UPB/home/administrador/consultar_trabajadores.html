@@ -3,23 +3,15 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Consultar Clientes</title>
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="js/codequery.js"></script>
-    <script src="js/poppermin.js"></script>
-    <script src="js/bootsrap431.js"></script>
-    <script src="js/bootsraptable.js"></script>
-    <script type="text/javascript" src="js/rut.js"></script>
-    <script type="text/javascript" charset="utf8"
-        src="js/jquerydatatable.js"></script>
+    <title>Consultar Trabajadores</title>
+    <script src="js/codequery.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body class="sb-nav-fixed" background="img/admin.jpeg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Sistema Web</a><button
-            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
-                class="fas fa-bars"></i></button>
+        <a class="navbar-brand" href="/principal">Administrador</a><button class="btn btn-link btn-sm order-1 order-lg-0"
+            id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
         <!-- Navbar Search-->
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -41,67 +33,76 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div >-----------------------------------
+                        <div><br>
                             <form action="/principal">
-                                <button  class="btn btn-info">Registro Trabajadores</button>
+                                <button class="btn btn-info" style="width: 5cm;">Registro Trabajadores</button>
                             </form>
                         </div>
-                        <div >----------------------------------
+                        <div><br>
                             <form action="/ver_trabajador" method="get">
-                                <button class="btn btn-info">Ver Trabajadores</button>
+                                <button class="btn btn-info" style="width: 5cm;">Ver Trabajadores</button>
                             </form>
                         </div>
 
-                        <div >-----------------------------------
+                        <div><br>
                             <form action="/modificar_trabajadores" method="get">
-                                <button class="btn btn-info">Modificar Trabajadores</button>
+                                <button class="btn btn-info" style="width: 5cm;">Modificar Trabajadores</button>
                             </form>
                         </div>
-                        <div >-----------------------------------
+                        <div><br>
                             <form action="/generar_informe" method="get">
-                                <button class="btn btn-info">Generar Informe Servicios</button>
+                                <button class="btn btn-info" style="width: 5cm;">Generar Informe Servicios</button>
                             </form>
                         </div>
-                        <div >-----------------------------------
+                        <div><br>
                             <form action="/registro_servicios" method="get">
-                                <button class="btn btn-info">Registro de Servicios</button>
+                                <button class="btn btn-info" style="width: 5cm;">Registro de Servicios</button>
                             </form>
                         </div>
-                        
+
             </nav>
         </div>
     </div>
-        <div class="container-fluid">
-            <div class="container-fluid">
-                <table id="example" class="display" width="100%"></table>
-            </div>
-
-            <script type="text/javascript">
-                var bd = 'http://localhost:4000/api_trabajador';
-                $(document).ready(function () {
-                    $.ajax({
-                        url: bd,
-                        context: document.body
-                    }).done(function (oResultado) {
-
-                        $('#example').DataTable({
-                            data: oResultado,
-                            columns: [
-                                { title: "CEDULA" },
-                                { title: "NOMBRE" },
-                                { title: "APELLIDO" },
-                                { title: "CORREO" },
-                                { title: "DIRECCION" },
-                                { title: "TELEFONO" },
-                                { title: "TIPO_TRABAJADOR" }
-                            ]
-                        });
-
-                    });
-                });
-            </script>
-
-        </div>
+    <div class="col-md-12">
+        <br>
+        <br>
+        <br>
+        <table id="example" class="display" style="margin:auto; width: 70%;"></table>
     </div>
+
+    <script type="text/javascript">
+        var bd = 'http://localhost:4000/api_trabajador';
+        $(document).ready(function () {
+            $.ajax({
+                url: bd,
+                context: document.body
+            }).done(function (oResultado) {
+
+                $('#example').DataTable({
+                    data: oResultado,
+                    columns: [
+                        { title: "CEDULA" },
+                        { title: "NOMBRE" },
+                        { title: "APELLIDO" },
+                        { title: "CORREO" },
+                        { title: "DIRECCION" },
+                        { title: "TELEFONO" },
+                        { title: "TIPO_TRABAJADOR" }
+                    ]
+                });
+
+            });
+        });
+    </script>
+    </div>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/font-awesome.js" crossorigin="anonymous"></script>
+    <script src="js/bootsrap431.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/chart.js" crossorigin="anonymous"></script>
+    <script src="js/jquerydatatable.js" crossorigin="anonymous"></script>
+    <script src="js/bootsraptable110.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/rut.js"></script>
 </body>
+
 </html>
