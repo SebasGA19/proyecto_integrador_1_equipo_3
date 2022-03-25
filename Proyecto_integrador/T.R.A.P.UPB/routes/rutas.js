@@ -17,6 +17,11 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../estatica/index.html'));
 })
 
+
+router.post('/api_generar_factura_fisico', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/cajero/factura_fisico_api.html'));
+})
+
 //Rutas generales
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/login.html'));
@@ -370,6 +375,31 @@ router.get('/api_trabajador', async (req, res) => {
     })
     
 })
+
+//Consultar facturas (API)
+router.get('/api_trabajador', async (req, res) => {
+    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID != 6'),async(error,result)=>{
+        var data = [];
+        var subdata = [];
+        for (var i = 0 ; i < result.length ; i++){
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].CEDULA.toString());
+            subdata.push(result[i].NOMBRE.toString());
+            subdata.push(result[i].APELLIDO.toString());
+            subdata.push(result[i].CORREO.toString());
+            subdata.push(result[i].TELEFONO.toString());
+            subdata.push(result[i].DIRECCION.toString());
+            subdata.push(result[i].TIPO_PERSONAS_ID.toString());
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+    
+})
+
+
 
 //Consultar Servicios (API)
 router.get('/api_servicios', async (req, res) => {
