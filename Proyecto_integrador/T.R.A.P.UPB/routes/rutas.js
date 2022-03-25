@@ -91,8 +91,13 @@ router.get('/registro_clientes', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/secretario/secretario.html'));
 })
 
+router.get('/actualizar_estado_servicio', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/mecanico/actualizar_estado_servicio.html'));
+})
+
+
 router.get('/entrega_vehiculo', (req, res) => {
-    res.sendFile(path.join(__dirname, '../home/mecanico/mecanico.html'));
+    res.sendFile(path.join(__dirname, '../home/recepcionista/entrega_vehiculos.html'));
 })
 
 
@@ -623,6 +628,13 @@ router.post('/modificar_clientes', async (req, res) => {
     });
 })
 
+
+
+
+
+
+
+
 // CAJERO
 
 //Servicios
@@ -750,5 +762,51 @@ router.post('/generar_factura', async (req, res) => {
           res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
     }
 })
+
+router.post('/api_actualizar_estado_servicio', async (req, res) => {
+    console.log("inicio");
+    const id = req.body.id;
+    const estado = parseInt(req.body.estado);
+
+    console.log(estado + " est");
+
+    if (id) {
+        pool.query((`SELECT * FROM SERVICIOS AS S WHERE S.ID = '${id}'`), async (err, result) => {
+            console.log(result.length);
+            if (err) {
+                console.log(err);
+            } else if (result.length == 0) {
+                notifier.notify({
+                    title: 'ADVERTENCIA',
+                    message: 'No existe el servicio',
+                    wait:false
+                  });
+                  res.sendFile(path.join(__dirname, '../home/mecanico/actualizar_estado_servicio.html'));
+            } else {
+                console.log("entra");
+                pool.query((`UPDATE SERVICIOS SET ACTIVO = '${estado}' WHERE ID= '${id}';`), async (error, resultados) => {
+                    if (error) {
+                        res.send(error);
+                    } else {
+                        notifier.notify({
+                            title: 'ADVERTENCIA',
+                            message: 'Se ha actualizado el servicio ',
+                            wait:false
+                          });
+                          res.sendFile(path.join(__dirname, '../home/mecanico/actualizar_estado_servicio.html'));
+                    }
+                })
+            }
+        });
+    } else {
+        notifier.notify({
+            title: 'ADVERTENCIA',
+            message: 'Rellene bien la información ',
+            wait:false
+          });
+          res.sendFile(path.join(__dirname, '../home/mecanico/actualizar_estado_servicio.html'));
+    }
+})
+
 
 module.exports = router

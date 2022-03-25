@@ -3,13 +3,16 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Entrega vehiculos</title>
+    <title>Home</title>
     <script src="js/codequery.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/font-awesome.js"
+        crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed" background="img/admin.jpeg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="/entrega_vehiculo">Mecanico</a><button
+        <a class="navbar-brand" href="/entrega_vehiculo">Recepcionista</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
 
@@ -33,12 +36,16 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div ><hr>
-                            <form action="/entrega_vehiculo" method="get">
-                                <button class="btn btn-info" style="width: 5cm;">Entrega de vehiculos</button>
+                        <div >-----------------------------------
+                            <form action="/recepcion">
+                                <button  class="btn btn-info" style="width: 5cm;">Recepcion de vehiculos</button>
                             </form>
-                        </div>  
-                    
+                        </div>
+                        <div >-----------------------------------
+                            <form action="/entrega_vehiculo" method="get">
+                                <button class="btn btn-info">Entrega de vehiculos</button>
+                            </form>
+                        </div> 
             </nav>
         </div>
     </div>
@@ -68,16 +75,17 @@
             </div>
         </div>
     </div>
+    <script src="js/chart.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="assets/demo/datatables-demo.js"></script> 
+    <script type="text/javascript" src="js/rut.js"></script>
     <script src="js/codequery.js" crossorigin="anonymous"></script>
     <script src="js/bootsrap431.js"
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
-    <script src="js/char.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="js/jquerydatatable.js" crossorigin="anonymous"></script>
     <script src="js/bootsraptable110.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
 </body>
 
 </html>
