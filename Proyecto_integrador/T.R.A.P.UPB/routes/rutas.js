@@ -83,8 +83,8 @@ router.get('/volver', (req, res) => {
 
 
 //OTROS
-router.get('/registro_servicios', (req, res) => {
-    res.sendFile(path.join(__dirname, '../home/administrador/registro_servicios.html'));
+router.get('/registro_tipo_servicios', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/registro_tipo_servicios.html'));
 })
 //OTROS
 router.get('/registro_clientes', (req, res) => {
@@ -670,6 +670,48 @@ router.post('/generar_servicio', async (req, res) => {
           res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
     }
 })
+
+router.post('/generar_tipo_servicio', async (req, res) => {
+    const servicio = req.body.id;
+    const tipo_servicio = req.body.tipo_servicio;
+    console.log(servicio);
+    console.log(tipo_servicio);
+    if (servicio && tipo_servicio ) {
+        pool.query((`SELECT * FROM SERVICIOS AS S WHERE S.ID = '${servicio}'`), async (err, result) => {
+            if (err) {
+                console.log(err);
+            } else if (result.length != 0) {
+                notifier.notify({
+                    title: 'ADVERTENCIA',
+                    message: 'Ya existe el servicio',
+                    wait:false
+                  });
+                  res.sendFile(path.join(__dirname, '../home/administrador/registro_tipo_servicios.html'));
+            } else {
+                pool.query((`INSERT INTO TIPO_SERVICIO (ID, TIPO_SERVICIO) VALUES ('${servicio}', '${tipo_servicio}');`), async (error, resultados) => {
+                    if (error) {
+                        res.send(error);
+                    } else {
+                        notifier.notify({
+                            title: 'ADVERTENCIA',
+                            message: 'Se ha agregado el servicio ',
+                            wait:false
+                          });
+                          res.sendFile(path.join(__dirname, '../home/administrador/registro_tipo_servicios.html'));
+                    }
+                })
+            }
+        });
+    } else {
+        notifier.notify({
+            title: 'ADVERTENCIA',
+            message: 'Rellene bien la información ',
+            wait:false
+          });
+          res.sendFile(path.join(__dirname, '../home/administrador/registro_tipo_servicios.html'));
+    }
+})
+
 
 //Facturas
 router.post('/generar_factura', async (req, res) => {

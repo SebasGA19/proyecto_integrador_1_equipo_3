@@ -55,7 +55,7 @@
                             </form>
                         </div>
                         <div >-----------------------------------
-                            <form action="/registro_servicios" method="get">
+                            <form action="/registro_tipo_servicios" method="get">
                                 <button class="btn btn-info">Registro de Servicios</button>
                             </form>
                         </div>
@@ -70,34 +70,10 @@
             
 
 
-                <form action="/generar_servicio" method="POST" class="formulario" id="formulario">
+                <form action="/generar_tipo_servicio" method="POST" class="formulario" id="formulario">
 
-                    <h3>Formulario Registro Servicios</h3>
-
-                    <!--Grupo Cédula-->
-               <!--Grupo Cédula-->
-         <div class="formulario__grupo " id="grupo__cedula">
-            <label for="cedula" class="formulario__label">Cédula</label>
-            <div class="formulario__grupo-input">
-                <input class="formulario__input" type="text" name="cedula" id="cedula" placeholder="Cédula">
-                <i class="formulario__validacion-estado fas fa-times-circle"></i>
-            </div>
-            <p class="formulario__input-error">La cédula tiene que ser de 4 a 16 digitos</p>
-
-            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-        </div>
-
-                    <!--Grupo Servicio-->
-                    <div class="formulario__grupo" id="grupo__servicio">
-                        <label for="servicio" class="formulario__label">Servicio</label>
-                        <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="text" name="servicio" placeholder="Servicio">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Servicio no valido, solo puede contener letras</p>
-
-                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-                    </div>
+                    <h3>Formulario Registro Tipo de Servicios</h3>
+                   
                     <!--Grupo Id-->
                     <div class="formulario__grupo" id="grupo__id">
                         <label for="Id" class="formulario__label">Id</label>
@@ -110,14 +86,14 @@
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>
-                    <!--Grupo Precio-->
-                    <div class="formulario__grupo" id="grupo__precio">
-                        <label for="Id" class="formulario__label">Precio</label>
+                    <!--Grupo Servicio-->
+                    <div class="formulario__grupo" id="grupo__servicio">
+                        <label for="servicio" class="formulario__label">Tipo de Servicio</label>
                         <div class="formulario__grupo-input">
-                            <input class="formulario__input" type="number" name="precio" placeholder="412">
+                            <input class="formulario__input" type="text" name="tipo_servicio" placeholder="Tipo">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">El precio solo puede contener números </p>
+                        <p class="formulario__input-error">Servicio no valido, solo puede contener letras</p>
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>
