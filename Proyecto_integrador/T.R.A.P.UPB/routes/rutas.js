@@ -106,6 +106,11 @@ router.get('/ver_factura', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/cajero/facturar.html'));
 })
 
+
+router.get('/ver_factura_fisico', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/cajero/factura_fisico.html'));
+})
+
 // Login Trabajador
 router.post('/login_trabajadores', async (req, res) => {
     const correo = req.body.emaillogin;

@@ -50,29 +50,21 @@
     </div>
 		<div id="layoutSidenav_content">
 			<div class="container-fluid">
-				<form action="/generar_factura" method="POST" class="formulario" id="formulario" style="width: 30%;">
+				<form action="/api_generar_factura_fisico" method="POST" class="formulario" id="formulario" style="width: 30%;">
 					
-						<h3 style="text-align: center;">Formulario de generar factura</h3>
+						<h3 style="text-align: center;">Ver factura</h3>
 						
 						<div>
 
 						</div>
 							<div class="formulario__grupo-input">
-								<label for="cedula" class="formulario__label">Cédula</label>
-								<input class="formulario__input" type="number" name="cedula" id="cedula"
-									placeholder="Cédula">
+								<label for="cedula" class="formulario__label">Id</label>
+								<input class="formulario__input" type="number" name="id" id="Id"
+									placeholder="Id">
 								<i class="formulario__validacion-estado fas fa-times-circle"></i>
 							</div>
 
-						
-							<div class="formulario__grupo-input">
-								<label for="cedula" class="formulario__label">ID Vehiculo</label>
-								<input class="formulario__input" type="number" name="id" id="id" placeholder="Cédula">
-								<i class="formulario__validacion-estado fas fa-times-circle"></i>
-							</div>
-							
-
-							<button type="click" class="fomulario__btn">Facturar</button>
+							<button type="click" class="fomulario__btn">Ver factura fisico</button>
 					
 
 				</form>
