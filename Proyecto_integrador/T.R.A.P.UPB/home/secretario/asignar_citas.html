@@ -3,14 +3,15 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Consulta</title>
+    <title>Asignar citas</title>
     <script src="js/codequery.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed" background="img/admin.jpeg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="/registro_clientes">Secretario TRAP</a><button class="btn btn-link btn-sm order-1 order-lg-0"
-            id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <a class="navbar-brand" href="/registro_clientes">Secretario TRAP</a><button
+            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
 
         <!-- Navbar Search-->
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -62,41 +63,26 @@
                 </div>
             </nav>
         </div>
-        </div>
+    </div>
 
+    <div class="container-fluid">
+        <form action="/registrar_citas" method="POST" class="formulario" id="formulario">
+            <div class="container-fluid">
 
-        <div class="col-md-12" >
-            <br>
-            <br>
-            <br>
-            <table id="example" class="display" style="margin:auto; width: 70%;" ></table>
-        </div>
-    
-        <script type="text/javascript">
-            var bd = 'http://localhost:4000/api_cliente';
-            $(document).ready(function () {
-                $.ajax({
-                    url: bd,
-                    context: document.body
-                }).done(function (oResultado) {
+                <h3>Asignar citas</h3><br>
+                <div class="formulario__grupo" id="grupo__password2">
+                    <textarea name="d_cita" id="d_cita" style="width: 550px; height: 100px; background-color: whitesmoke;"
+                        placeholder="Descripción"></textarea>
+                    <label for="usuario" class="formulario__label">Cédula</label>
+                    <input class="formulario__input" type="number" name="cedula" placeholder="cédula">
+                    <br>
+                    <label class="formulario__label">Fecha</label>
+                    <input type="datetime-local" name="fecha" id="fecha" placeholder="cédula" min="2020-12-31" style="background-color: whitesmoke;">   
+                    <button type="click" style="background-color:whitesmoke; margin-left: 30px; width: 270px;" >Registrar</button>
+                </div>
+        </form>
 
-                    $('#example').DataTable({
-                        data: oResultado,
-                        columns: [
-                            { title: "CEDULA" },
-                            { title: "NOMBRE" },
-                            { title: "APELLIDO" },
-                            { title: "CORREO" },
-                            { title: "TELEFONO" },
-                            { title: "DIRECCION" }
-                        ]
-                    });
-
-                });
-            });
-        </script>
-
-
+    </div>
     </div>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/font-awesome.js" crossorigin="anonymous"></script>
