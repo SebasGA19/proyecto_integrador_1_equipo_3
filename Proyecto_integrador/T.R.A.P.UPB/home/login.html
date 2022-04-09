@@ -1,51 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link href="css/styles.css" rel="stylesheet" />
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>logueo Trabajadores</title>
-    <link rel="icon" href="../public/img/icon.png">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>logueo Trabajadores</title>
 </head>
 
-<body>
-    <br>
-    <div class="container">
-      <hr class="hr-or">
-      <divclass="row">
-        <div class="col-md-5 mx-auto">
-          <div id="first">
-            <div class="myform form ">
-              <div class="logo mb-3">
-                <div class="col-md-12 text-center">
-                  <h1>Ingresar</h1>
-                  <hr class="hr-or">
-                </div>
-              </div>
-              <form action="/login_trabajadores" method="POST">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Correo</label>
-                  <input type="email" name="emaillogin" class="form-control" id="emaillogin" aria-describedby="emailHelp"
-                    placeholder="Ingresa el correo">
-                </div>
-  
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Contraseña</label>
-                  <input type="password" name="passwordlogin" id="passwordlogin" class="form-control" aria-describedby="emailHelp"
-                    placeholder="Ingresa la contraseña">
-                </div>
-                <div class="form-group">
-                  <p class="text-center"> ¿No te has registrado? <a href="">Unete ahora</a></p>
-                </div>
-                <div class="col-md-12 text-center ">
-                  <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
-                </div>
-                <hr class="hr-or">
-              </form>
-  
-            </div>
-          </div>
-        </div>
-  </body>
+<link rel="stylesheet" href="css/styles.css">
+
+<style>
+  #contenedor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #contenedor>div {
+    width: 50%;
+  }
+
+  input::placeholder {
+    text-align: center;
+    font-family: 'Open Sans Condensed', sans-serif;
+  }
+
+  h1 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    margin-left: 30px;
+  }
+
+  h1:before {
+    display: inline-block;
+    content: " ";
+    margin-right: 15px;
+    width: 70px;
+    height: 6px;
+    border-top: 1px solid #333;
+  }
+
+  h1:after {
+    display: inline-block;
+    content: " ";
+    margin-left: 15px;
+    width: 70px;
+    height: 6px;
+    border-top: 1px solid #333;
+  }
+</style>
+
+<body style="background-color: whitesmoke;">
+  <div
+    style="margin-top: 150px; margin-left: 550px; height: 350px; width: 750px; background-color: white; border-radius: 10px; box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);">
+    <div id="contenedor">
+      <div>
+        <img src="img/logo.jpg" style="width: 370px; height: 330px; margin-top: 20px; margin-left: 10px;">
+      </div>
+
+      <div style="margin: 50px auto;">
+        <form action="/login_trabajadores" method="POST">
+          <h1>Loguear</h1>
+          <input type="email" name="emaillogin" id="emaillogin" placeholder="Ingresa el correo"
+            style="border-radius: 10px; height: 30px; width: 300px; margin: 10px; border-width: 1px; margin-top: 20px;">
+          <br>
+          <input type="password" name="passwordlogin" id="passwordlogin" placeholder="Ingresa la contraseña"
+            style="border-radius: 10px; height: 30px; width: 300px; margin: 10px; border-width: 1px; margin-top: 20px;">
+          <br>
+          <button type="submit" style=" border-radius: 20px; border: 0ch; margin: 10px; margin-top: 30px; text-align: center; height: 50px; width: 300px; background-color: whitesmoke;  font-family: 'Open Sans Condensed', sans-serif; box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.5);
+          font-size: 18px;">Ingresar</button>
+        </form>
+
+      </div>
+</body>
 
 </html>
