@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <title>Home</title>
     <script src="js/codequery.js" crossorigin="anonymous"></script>
 
 </head>
-<body class="sb-nav-fixed" background="img/admin.jpeg">
+
+<body class="sb-nav-fixed" background="img/fondo.jpg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="/recepcion">Recepcionista</a><button
+        <a class="navbar-brand" href="/entrega_vehiculo">Recepcionista</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
+
+        <!-- Navbar Search-->
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <form action="/login" method="get">
-                        <button class="btn btn-danger">SALIR</button>
+                        <button class="btn btn-danger">Salir</button>
                     </form>
                 </div>
             </li>
@@ -28,21 +34,24 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div ><br>
+                        <div><br>
                             <form action="/recepcion">
-                                <button  class="btn btn-info" style="width: 5cm;">Recepcion de vehiculos</button>
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Recepcion
+                                    de vehiculos</button>
                             </form>
                         </div>
-                        <div ><br>
+                        <div><br>
                             <form action="/entrega_vehiculo" method="get">
-                                <button class="btn btn-info">Entrega de vehiculos</button>
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Entrega
+                                    de vehiculos</button>
                             </form>
-                        </div>  
-            
+                        </div>
             </nav>
         </div>
     </div>
-    <div id="layoutSidenav_content" >
+    <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
 
@@ -51,17 +60,17 @@
                     <h3>Recepción de vehiculos</h3>
 
                     <!--Grupo Cédula-->
-               <!--Grupo Cédula-->
-         <div class="formulario__grupo " id="grupo__id">
-            <label for="cedula" class="formulario__label">Id</label>
-            <div class="formulario__grupo-input">
-                <input class="formulario__input" type="text" name="id" id="id" placeholder="Id">
-                <i class="formulario__validacion-estado fas fa-times-circle"></i>
-            </div>
-            <p class="formulario__input-error">La id tiene que ser de 4 a 16 digitos</p>
+                    <!--Grupo Cédula-->
+                    <div class="formulario__grupo " id="grupo__id">
+                        <label for="cedula" class="formulario__label">Id</label>
+                        <div class="formulario__grupo-input">
+                            <input class="formulario__input" type="text" name="id" id="id" placeholder="Id">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">La id tiene que ser de 4 a 16 digitos</p>
 
-            <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
-        </div>
+                        <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
+                    </div>
 
                     <!--Grupo Servicio-->
                     <div class="formulario__grupo" id="grupo__Modelo">
@@ -118,7 +127,8 @@
                     </div>
 
                     <div class="formulario__grupo formulario__grupo-btn-enviar">
-                        <button type="click" class="fomulario__btn">Registrar</button>
+                        <button type="click" style=" border-radius: 20px; border: 0ch; margin: 10px; margin-top: 30px; text-align: center; height: 50px; width: 95%; background-color: whitesmoke;  font-family: 'Open Sans Condensed', sans-serif; box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.5);
+                        font-size: 18px;">Registrar</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
                             exitosamente</p>
 
@@ -126,11 +136,11 @@
 
 
 
-                </form>       
+                </form>
                 <script type="text/javascript" src="js/rut.js"></script>
 
             </div>
-            
+
         </main>
 
     </div>

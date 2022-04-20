@@ -5530,6 +5530,10 @@ a.badge-dark:focus, a.badge-dark.focus {
   flex: 1;
 }
 
+background{
+  filter: blur(6px);
+}
+
 .list-group {
   display: flex;
   flex-direction: column;

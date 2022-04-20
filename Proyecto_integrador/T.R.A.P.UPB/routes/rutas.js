@@ -17,6 +17,14 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../estatica/index.html'));
 })
 
+router.get('/mecanicox', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/mecanico/actualizar_estado_servicio.html'));
+})
+
+router.get('/historia_informe', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/informe_facturas.html'));
+})
+
 
 router.post('/api_generar_factura_fisico', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/cajero/factura_fisico_api.html'));
@@ -151,7 +159,7 @@ router.post('/login_trabajadores', async (req, res) => {
                 } else if (results[0].TIPO_PERSONAS_ID == 3) {
                     res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 4) {
-                    res.sendFile(path.join(__dirname, '../home/mecanico/mecanico.html'));
+                    res.sendFile(path.join(__dirname, '../home/mecanico/consultar_estado_servicio.html'));
                 } else if (results[0].TIPO_PERSONAS_ID == 5) {
                     res.sendFile(path.join(__dirname, '../home/cajero/cajero.html'));
                 } else {
@@ -512,6 +520,32 @@ router.get('/api_cliente', async (req, res) => {
             subdata.push(result[i].CORREO.toString());
             subdata.push(result[i].TELEFONO.toString());
             subdata.push(result[i].DIRECCION.toString());
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+
+})
+
+//Consultar Factura (API)
+router.get('/api_factura', async (req, res) => {
+    pool.query(('SELECT * FROM FACTURA'), async (error, result) => {
+        var data = [];
+        var subdata = [];
+        for (var i = 0; i < result.length; i++) {
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].ID_FACTURA.toString());
+            subdata.push(result[i].NOMBRE_COMPLETO.toString());
+            subdata.push(result[i].PRECIO_FINAL.toString());
+            subdata.push(result[i].FECHA.toString());
+            subdata.push(result[i].PERSONAS_CEDULA.toString());
+            if(result[i].PERSONAS_TIPO_PERSONAS_ID != 6){
+                subdata.push("Trabajador");
+            }else{
+                subdata.push("Cliente");
+            }
             data.push(subdata);
         }
         //console.log(data);
