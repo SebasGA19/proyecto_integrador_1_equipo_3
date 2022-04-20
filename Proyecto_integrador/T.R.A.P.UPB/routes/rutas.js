@@ -185,12 +185,39 @@ router.post('/login_trabajadores', async (req, res) => {
 //Entrega de vehiculo
 router.post('/api_entrega_vehiculo', (req, res) => {
     const id = req.body.id;
-    //  pool.query(('SELECT ID , VEHICULOS_ID , ACTIVO FROM SERVICIOS AS S, VEHICULOS AS V WHERE S.ACTIVO = 0 AND '+ id +' = V.ID AND S.VEHICULOS_ID=V.ID'),async(error,results)=>{
-    pool.query(`SELECT * ID FROM VEHICULOS AS V, SERVICIOS AS S V WHERE S.ACTIVO=0 AND V.ID='${id}'`, async (error, results) => {
-        console.log(id);
-        console.log(results.length)
-        //console.log(data);
-    })
+    if (id) {
+        pool.query((`SELECT * FROM VEHICULOS AS S WHERE S.ID = '${id}'`), async (err, result) => {
+            console.log(result.length);
+            if (err) {
+                console.log(err);
+            } else if (result.length == 0) {
+                notifier.notify({
+                    title: 'ADVERTENCIA',
+                    message: 'No existe el vehiculo',
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/recepcionista/entrega_vehiculos.html'));
+            } else {
+                notifier.notify({
+                    title: 'ADVERTENCIA',
+                    message: 'Se ha entregado el vehiculo con id de: '+id,
+                    wait: false
+                });
+                res.sendFile(path.join(__dirname, '../home/recepcionista/entrega_vehiculos.html'));
+            }
+        });
+
+
+    } 
+
+    else {
+        notifier.notify({
+            title: 'ADVERTENCIA',
+            message: 'Rellene bien la información ',
+            wait: false
+        });
+        res.sendFile(path.join(__dirname, '../home/recepcionista/entrega_vehiculos.html'));
+    }
 })
 
 

@@ -52,7 +52,7 @@
         <div id="layoutSidenav_content">
             <div class="container-fluid">
                 
-                <form action="/entregar_vehiculo" method="POST" class="formulario" id="formulario">
+                <form action="/api_entrega_vehiculo" method="POST" class="formulario" id="formulario">
 
                     <h3>Formulario Entrega de Vehiculo</h3>
 
@@ -68,10 +68,13 @@
 
                         <p class="formulario__input-errorn">Esta casilla es obligatoria</p>
                     </div>
-                    
+                    <div class="formulario__grupo formulario__grupo-btn-enviar">
+                        <button type="click"style=" border-radius: 20px; border: 0ch; margin: 10px; margin-top: 30px; text-align: center; height: 50px; width: 95%; background-color: whitesmoke;  font-family: 'Open Sans Condensed', sans-serif; box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.5);
+                        font-size: 18px;">Entregar</button>
+                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
+                            exitosamente</p>
+                    </div>
                 </form>       
-                
-
             </div>
         </div>
     </div>
