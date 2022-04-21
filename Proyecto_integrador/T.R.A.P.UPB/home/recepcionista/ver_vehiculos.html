@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Consultar estado</title>
+    <title>Home</title>
     <script src="js/codequery.js" crossorigin="anonymous"></script>
     <link type="image/png" sizes="26x26" rel="icon" href="img/logo.jpg">
 
@@ -11,7 +11,7 @@
 
 <body class="sb-nav-fixed" background="img/fondo.jpg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="/mecanicox">Mecanico</a><button
+        <a class="navbar-brand" href="/entrega_vehiculo">Recepcionista</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
 
@@ -34,31 +34,41 @@
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
-                    <div class="nav">          
-                        <div ><hr>
-                            <form action="/consultar_estado_servicio" method="get">
-                                <button style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Estado del servicio</button>
+                    <div class="nav">
+                        <div><br>
+                            <form action="/recepcion" method="get">
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Recepcion
+                                    de vehiculos</button>
                             </form>
                         </div>
-
-                        <div ><hr>
-                            <form action="/actualizar_estado_servicio" method="get">
-                                <button style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Actualizar estado del servicio</button>
+                        <div><br>
+                            <form action="/entrega_vehiculo" method="get">
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Entrega
+                                    de vehiculos</button>
                             </form>
-                        </div>            
+                        </div>
+                        <div><br>
+                            <form action="/ver_vehiculo" method="get">
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Ver
+                                    vehiculos</button>
+                            </form>
+                        </div>
             </nav>
         </div>
     </div>
-    <div class="col-md-12" style="margin:auto; width: 70%;">
+    
+    <div class="col-md-12" style="margin-left: 15%; margin-right: 10%; width: 80%; margin-top: 1%;">
         <br>
         <br>
         <br>
         <table id="example" class="display" style="margin:auto; width: 70%;"></table>
     </div>
 
-
     <script type="text/javascript">
-        var bd = 'http://localhost:4000/api_servicios';
+        var bd = 'http://localhost:4000/api_vehiculos';
         $(document).ready(function () {
             $.ajax({
                 url: bd,
@@ -69,18 +79,17 @@
                     data: oResultado,
                     columns: [
                         { title: "ID" },
-
-                        { title: "ACTIVO" }
-
-
+                        { title: "MODELO" },
+                        { title: "AÑO" },
+                        { title: "FALLO" },
+                        { title: "CEDULA" },
+                        { title: "TIPO DE PERSONA" }
                     ]
                 });
 
             });
         });
     </script>
-
-    </div>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/font-awesome.js" crossorigin="anonymous"></script>
     <script src="js/bootsrap431.js" crossorigin="anonymous"></script>

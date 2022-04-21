@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Consultar Trabajadores</title>
+    <title>Tipo de servicio</title>
     <script src="js/codequery.js" crossorigin="anonymous"></script>
     <link type="image/png" sizes="26x26" rel="icon" href="img/logo.jpg">
+
 </head>
 
 <body class="sb-nav-fixed" background="img/fondo.jpg">
@@ -78,6 +79,7 @@
                                         de facturas</button>
                                 </form>
                             </div>
+
                             <div>
                                 <br>
                                 <form action="/ver_tipo_servicio" method="get">
@@ -98,7 +100,7 @@
     </div>
 
     <script type="text/javascript">
-        var bd = 'http://localhost:4000/api_servicios';
+        var bd = 'http://localhost:4000/api_tipo_servicio';
         $(document).ready(function () {
             $.ajax({
                 url: bd,
@@ -109,18 +111,13 @@
                     data: oResultado,
                     columns: [
                         { title: "ID" },
-                        { title: "PRECIO (COL)" },
-                        { title: "ACTIVO" },
-                        { title: "TIPO DE SERVICIO" },
-                        { title: "ID DEL VEHICULO" }
-
+                        { title: "DESCRIPCIÓN" }
                     ]
                 });
 
             });
         });
     </script>
-
     </div>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/font-awesome.js" crossorigin="anonymous"></script>

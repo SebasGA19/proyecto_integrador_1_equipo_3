@@ -4,14 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <title>Modificar Trabajadores</title>
+    <link type="image/png" sizes="26x26" rel="icon" href="img/logo.jpg">
     <script src="js/codequery.js" crossorigin="anonymous"></script>
-    
+
 </head>
 
 <body class="sb-nav-fixed" background="img/fondo.jpg">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="/principal">Administrador</a><button class="btn btn-link btn-sm order-1 order-lg-0"
-            id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <a class="navbar-brand" href="/principal">Administrador</a><button
+            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
 
         <!-- Navbar Search-->
         <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -35,35 +37,54 @@
                     <div class="nav">
                         <div><br>
                             <form action="/principal">
-                                <button style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Registro Trabajadores</button>
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Registro
+                                    Trabajadores</button>
                             </form>
                         </div>
                         <div><br>
                             <form action="/ver_trabajador" method="get">
-                                <button style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Ver Trabajadores</button>
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Ver
+                                    Trabajadores</button>
                             </form>
                         </div>
 
                         <div><br>
                             <form action="/modificar_trabajadores" method="get">
-                                <button style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Modificar Trabajadores</button>
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Modificar
+                                    Trabajadores</button>
                             </form>
                         </div>
                         <div><br>
                             <form action="/generar_informe" method="get">
-                                <button style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Informe Servicios</button>
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Informe
+                                    Servicios</button>
                             </form>
                         </div>
-                        <div ><br>
+                        <div><br>
                             <form action="/registro_tipo_servicios" method="get">
-                                <button style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Registro de Servicios</button>
+                                <button
+                                    style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Registro
+                                    de Servicios</button>
                             </form>
 
                             <div>
                                 <br>
-                            <form action="/historia_informe" method="get">
-                                <button style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Informe de facturas</button>
-                            </form>
+                                <form action="/historia_informe" method="get">
+                                    <button
+                                        style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;">Informe
+                                        de facturas</button>
+                                </form>
+                            </div>
+                            <div>
+                                <br>
+                                <form action="/ver_tipo_servicio" method="get">
+                                    <button
+                                        style="width: 90%; margin-left: 5%; border-radius: 10px; height: 50px; border-width: 0ch; background-color: whitesmoke; box-shadow: 3.5px 3.5px 3.5px 3.5px black; font-family: cursive; font-size:15px;"> Tipo Servicio</button>
+                                </form>
                             </div>
                         </div>
 
@@ -74,7 +95,7 @@
         <br>
         <br>
         <br>
-        <table id="example" class="display" style="margin:auto; width: 70%;" ></table>
+        <table id="example" class="display" style="margin:auto; width: 70%;"></table>
     </div>
 
     <script type="text/javascript">
@@ -100,7 +121,7 @@
             });
         });
     </script>
-    
+
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/font-awesome.js" crossorigin="anonymous"></script>
     <script src="js/bootsrap431.js" crossorigin="anonymous"></script>

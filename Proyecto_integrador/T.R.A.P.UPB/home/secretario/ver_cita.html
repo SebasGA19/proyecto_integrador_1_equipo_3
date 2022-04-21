@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Consulta</title>
+    <title>Ver Citas</title>
     <script src="js/codequery.js" crossorigin="anonymous"></script>
     <link type="image/png" sizes="26x26" rel="icon" href="img/logo.jpg">
 </head>
@@ -80,7 +80,7 @@
         </div>
     
         <script type="text/javascript">
-            var bd = 'http://localhost:4000/api_cliente';
+            var bd = 'http://localhost:4000/api_ver_citas';
             $(document).ready(function () {
                 $.ajax({
                     url: bd,
@@ -90,12 +90,12 @@
                     $('#example').DataTable({
                         data: oResultado,
                         columns: [
+                            { title: "ID" },
+                            { title: "DESCRIPCIÓN" },
+                            { title: "FECHA" },
                             { title: "CEDULA" },
-                            { title: "NOMBRE" },
-                            { title: "APELLIDO" },
-                            { title: "CORREO" },
-                            { title: "TELEFONO" },
-                            { title: "DIRECCION" }
+                            { title: "TIPO DE PERSONA" },
+                            { title: "ESTADO" }
                         ]
                     });
 

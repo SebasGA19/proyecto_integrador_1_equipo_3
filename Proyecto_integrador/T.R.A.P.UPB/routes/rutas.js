@@ -17,8 +17,16 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../estatica/index.html'));
 })
 
+router.get('/ver_citas', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/secretario/ver_cita.html'));
+})
+
 router.get('/mecanicox', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/mecanico/actualizar_estado_servicio.html'));
+})
+
+router.get('/ver_tipo_servicio', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/administrador/ver_tipo_servicio.html'));
 })
 
 router.get('/historia_informe', (req, res) => {
@@ -75,6 +83,11 @@ router.get('/consultar_estado_servicio', (req, res) => {
 
 router.get('/recepcion', (req, res) => {
     res.sendFile(path.join(__dirname, '../home/recepcionista/recepcionista.html'));
+})
+
+
+router.get('/ver_vehiculo', (req, res) => {
+    res.sendFile(path.join(__dirname, '../home/recepcionista/ver_vehiculos.html'));
 })
 
 
@@ -413,6 +426,65 @@ router.get('/api_trabajador', async (req, res) => {
 
 })
 
+//Consultar Vehiculos (API)
+router.get('/api_vehiculos', async (req, res) => {
+    pool.query(('SELECT * FROM VEHICULOS'), async (error, result) => {
+        var data = [];
+        var subdata = [];
+        for (var i = 0; i < result.length; i++) {
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].ID.toString());
+            subdata.push(result[i].MODELO.toString());
+            subdata.push(result[i].AÑO.toString());
+            subdata.push(result[i].DESCRIPCIÓN_FALLA.toString());
+            subdata.push(result[i].PERSONAS_CEDULA.toString());
+            var tem = result[i].PERSONAS_TIPO_PERSONAS_ID;
+            if(tem == 6){
+                subdata.push("Cliente");
+            }else{
+                subdata.push("Trabajador");
+            }
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+
+})
+
+//Consultar citas (API)
+router.get('/api_ver_citas', async (req, res) => {
+    pool.query(('SELECT * FROM CITAS WHERE PERSONAS_TIPO_PERSONAS_ID = 6'), async (error, result) => {
+        var data = [];
+        var subdata = [];
+        for (var i = 0; i < result.length; i++) {
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].ID.toString());
+            subdata.push(result[i].DESCRIPCION_CITA.toString());
+            subdata.push(result[i].FECHA.toString());
+            subdata.push(result[i].PERSONAS_CEDULA.toString());
+            var rel1 = result[i].PERSONAS_TIPO_PERSONAS_ID.toString();
+            if(rel1 == "6"){
+                subdata.push("Cliente");
+            }else{
+                subdata.push("Trabajador");
+            }
+            var rel2 = result[i].REALIZADA;
+            if(rel2 == 1){
+                subdata.push("Hecha");
+            }else if(rel2 == 0){
+                subdata.push("Activa");
+            }
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+
+})
+
 //Consultar facturas (API)
 router.get('/api_trabajador', async (req, res) => {
     pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID != 6'), async (error, result) => {
@@ -428,6 +500,24 @@ router.get('/api_trabajador', async (req, res) => {
             subdata.push(result[i].TELEFONO.toString());
             subdata.push(result[i].DIRECCION.toString());
             subdata.push(result[i].TIPO_PERSONAS_ID.toString());
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+
+})
+
+//Consultar tipo de servicio (API)
+router.get('/api_tipo_servicio', async (req, res) => {
+    pool.query(('SELECT * FROM TIPO_SERVICIO'), async (error, result) => {
+        var data = [];
+        var subdata = [];
+        for (var i = 0; i < result.length; i++) {
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].ID.toString());
+            subdata.push(result[i].TIPO_SERVICIO.toString());
             data.push(subdata);
         }
         //console.log(data);
