@@ -405,7 +405,7 @@ router.post('/modificar_trabajadores', async (req, res) => {
 
 //Consultar Trabajadores (API)
 router.get('/api_trabajador', async (req, res) => {
-    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , TIPO_PERSONAS_ID FROM PERSONAS WHERE TIPO_PERSONAS_ID != 6'), async (error, result) => {
+    pool.query(('SELECT CEDULA , NOMBRE , APELLIDO , CORREO , TELEFONO , DIRECCION , DESCRIPCION_PERSONAS FROM PERSONAS ,TIPO_PERSONAS WHERE TIPO_PERSONAS_ID != 6 AND TIPO_PERSONAS_ID = ID'), async (error, result) => {
         var data = [];
         var subdata = [];
         for (var i = 0; i < result.length; i++) {
@@ -417,7 +417,7 @@ router.get('/api_trabajador', async (req, res) => {
             subdata.push(result[i].CORREO.toString());
             subdata.push(result[i].TELEFONO.toString());
             subdata.push(result[i].DIRECCION.toString());
-            subdata.push(result[i].TIPO_PERSONAS_ID.toString());
+            subdata.push(result[i].DESCRIPCION_PERSONAS.toString());
             data.push(subdata);
         }
         //console.log(data);
@@ -530,17 +530,44 @@ router.get('/api_tipo_servicio', async (req, res) => {
 
 //Consultar Servicios (API)
 router.get('/api_servicios', async (req, res) => {
-    pool.query(('SELECT ID , PRECIO , ACTIVO , TIPO_SERVICIO_ID , VEHICULOS_ID FROM SERVICIOS'), async (error, result) => {
+    pool.query(('SELECT S.ID , PRECIO , ACTIVO , TIPO_SERVICIO , VEHICULOS_ID FROM SERVICIOS AS S , TIPO_SERVICIO AS T WHERE t.ID = S.TIPO_SERVICIO_ID '), async (error, result) => {
         var data = [];
         var subdata = [];
+        console.log(result);
         for (var i = 0; i < result.length; i++) {
             aux = []
             subdata = aux;
             subdata.push(result[i].ID.toString());
             subdata.push(result[i].PRECIO.toString());
-            subdata.push(result[i].ACTIVO.toString());
-            subdata.push(result[i].TIPO_SERVICIO_ID.toString());
+            if(result[i].ACTIVO == 1){
+                subdata.push("En progreso");
+            }else{
+                subdata.push("Hecho");
+            }
+            subdata.push(result[i].TIPO_SERVICIO.toString());
             subdata.push(result[i].VEHICULOS_ID.toString());
+            data.push(subdata);
+        }
+        //console.log(data);
+        res.send(data);
+    })
+
+})
+
+router.get('/api_servicios_rutes', async (req, res) => {
+    pool.query(('SELECT S.ID , PRECIO , ACTIVO , TIPO_SERVICIO , VEHICULOS_ID FROM SERVICIOS AS S , TIPO_SERVICIO AS T WHERE t.ID = S.TIPO_SERVICIO_ID '), async (error, result) => {
+        var data = [];
+        var subdata = [];
+        console.log(result);
+        for (var i = 0; i < result.length; i++) {
+            aux = []
+            subdata = aux;
+            subdata.push(result[i].ID.toString());
+            if(result[i].ACTIVO == 1){
+                subdata.push("En progreso");
+            }else{
+                subdata.push("Hecho");
+            }
             data.push(subdata);
         }
         //console.log(data);
